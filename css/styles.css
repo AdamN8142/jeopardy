@@ -1,0 +1,53 @@
+* {
+  border-style: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: lightblue;
+}
+
+.header {
+  text-align: center;
+  margin: 25px 100px;
+}
+
+.h1 {
+  margin: 0;
+}
+
+.button__reset {
+  float: right;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 100px);
+  margin: 25px 100px;
+}
+
+
+
+.article {
+  border: 2px solid black;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 70px;
+}
+
+.article__header {
+  font-size: 30px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+
+.section__player {
+  border: 2px solid black;
+  text-align: center;
+  height: 50px;
+}

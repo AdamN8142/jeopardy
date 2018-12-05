@@ -1,0 +1,24 @@
+{
+  "name": "jeopardy",
+  "version": "1.0.0",
+  "description": "This is a simplified version of jeopardy that has four categories each round, has four questions per category, and is played with three players who take turns answering questions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dForDeveloper/jeopardy.git"
+  },
+  "author": "Jeo D and Adam Niedzwiecki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dForDeveloper/jeopardy/issues"
+  },
+  "homepage": "https://github.com/dForDeveloper/jeopardy#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "mocha": "^5.2.0"
+  }
+}

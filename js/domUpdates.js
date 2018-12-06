@@ -13,15 +13,15 @@ const jeopardy = {
     biographies: 'Biographies',
     americanCities: 'American Cities',
     food: 'Food',
-    cableTV: 'CableTV'
+    cableTV: 'Cable TV'
   }
 };
 
 $('.input--submit').on('click', instantiatePlayers);
 
 function presentClue(event) {
-  let id = event.target.dataset.id;
-  let selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
+  const id = event.target.dataset.id;
+  const selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
   if (selectedClue.dailyDouble === true) {
     alert('DAILY DOUBLE!\n' + selectedClue.question);
   } else {
@@ -63,10 +63,10 @@ function instantiateClues() {
 }
 
 function instantiateRounds() {
-  let categories = Object.keys(data.categories);
+  const categories = Object.keys(data.categories);
   randomizeCategories(categories);
   for (let i = 0; i < 2; i++) {
-    let roundCategories = categories.splice(0, 4)
+    const roundCategories = categories.splice(0, 4)
     jeopardy.rounds.push(new Round(roundCategories, i + 1));
   }
   jeopardy.rounds.push(new Round([categories[0]], 1));

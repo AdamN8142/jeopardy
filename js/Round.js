@@ -1,20 +1,22 @@
 class Round {
-  constructor(categories, dDCount) {
+  constructor(categories, dailyDoubleCount) {
     this.categories = categories;
     this.clues = [];
-    this.dDCount = dDCount;
-    this.dDLocations = [];
+    this.dailyDoubleCount = dailyDoubleCount;
   }
 
   randomizeDailyDoubles() {
-    for (let i = 0; i < this.dDCount; i++) {
-      const index = Math.floor(Math.random() * this.clues.length);
-      this.dDLocations.push(index);
-    }
-    if (this.dDCount === 2 && this.dDLocations[0] === this.dDLocations[1]) {
-      while (this.dDLocations[0] === this.dDLocations[1]) {
-        const index = Math.floor(Math.random() * this.clues.length);
-        this.dDLocations[1] = index;
+    for (let i = 0; i < this.dailyDoubleCount; i++) {
+      let index = Math.floor(Math.random() * this.clues.length);
+      if (i === 0) {
+        const { question, answer, pointValue, categoryId } = this.clues[index];
+        this.clues[index] = new DailyDouble(question, answer, pointValue, categoryId);
+      } else {
+        while (this.clues[index].dailyDouble === true) {
+          index = Math.floor(Math.random() * this.clues.length);
+        }
+        const { question, answer, pointValue, categoryId } = this.clues[index];
+        this.clues[index] = new DailyDouble(question, answer, pointValue, categoryId);
       }
     }
   }
@@ -32,15 +34,6 @@ class Round {
         this.clues.push(pointValueClues[randomIndex]);
       }
     });
-  }
-
-  setDailyDoubles() {
-    for (let i = 0; i < this.dDCount; i++) {
-      const index = this.dDLocations[i]
-      const { question, answer, pointValue, categoryId } = this.clues[index];
-      const dD = new DailyDouble(question, answer, pointValue, categoryId);
-      this.clues.splice(index, 1, dD);
-    }
   }
 
   findHighestPointValue() {

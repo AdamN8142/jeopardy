@@ -5,8 +5,8 @@ const DailyDouble = require('../js/DailyDouble.js');
 
 // describe('DailyDouble', function() {
 //   it('should instantiate a new DailyDouble', function() {
-//     const dailyDouble =  new Player('Jeo')
-//     expect(player.name).to.equal('Jeo')
+//     const dailyDouble =  new DailyDouble('Jeo')
+//     expect(dailyDouble.).to.equal('Jeo')
 //   })
 
 // })

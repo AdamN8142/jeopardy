@@ -3,10 +3,15 @@ const expect = chai.expect;
 const DailyDouble = require('../js/DailyDouble.js');
 
 
-// describe('DailyDouble', function() {
-//   it('should instantiate a new DailyDouble', function() {
-//     const dailyDouble =  new DailyDouble('Jeo')
-//     expect(dailyDouble.).to.equal('Jeo')
-//   })
+describe('DailyDouble', function() {
+  it('should instantiate a new DailyDouble', function() {
+    const dailyDouble = new DailyDouble('q', 'a', 100, 1)
+    expect(dailyDouble.question).to.equal('q')
+    expect(dailyDouble.answer).to.equal('a')
+    expect(dailyDouble.pointValue).to.equal(100)
+    expect(dailyDouble.categoryId).to.equal(1)
+    expect(dailyDouble.dailyDouble).to.equal(true)
+  })
+});
 
-// })
+

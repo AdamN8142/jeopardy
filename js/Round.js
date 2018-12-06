@@ -1,30 +1,46 @@
 class Round {
-  constructor(categories, dailyDoubleCount) {
+  constructor(categories, dDCount) {
     this.categories = categories;
     this.clues = [];
-    this.dailyDoubleCount = dailyDoubleCount;
-    // this.dailyDoubleLocations = [[i, j], [i2, j2]];
+    this.dDCount = dDCount;
+    this.dDLocations = [];
   }
 
   randomizeDailyDoubles() {
-    let col = Math.floor(Math.random() * 4)
-    let row = Math.floor(Math.random() * 4)
-    this.dailyDoubleLocations.push([col, row])
+    for (let i = 0; i < this.dDCount; i++) {
+      let index = Math.floor(Math.random() * this.clues.length);
+      this.dDLocations.push(index);
+    }
+    if (this.dDCount === 2 && this.dDLocations[0] === this.dDLocations[1]) {
+      while (this.dDLocations[0] === this.dDLocations[1]) {
+        let index = Math.floor(Math.random() * this.clues.length);
+        this.dDLocations[1] = index;
+      }
+    }
   }
 
   setClues() {
-    this.categories.forEach((cat, i) => {
-      let allClues = data.clues.filter(clue => {
-        return clue.categoryId === data.categories[cat];
+    this.categories.forEach(category => {
+      let categoryClues = jeopardy.clues.filter(clue => {
+        return clue.categoryId === data.categories[category];
       });
-      for (let j = 1; j < 5; j++) {
-        let pointValClues = allClues.filter(clue => {
-          return clue.pointValue === 100 * j;
-        })
+      for (let i = 1; i < 5; i++) {
+        let pointValClues = categoryClues.filter(clue => {
+          return clue.pointValue === 100 * i;
+        });
         let randIndex = Math.floor(Math.random() * pointValClues.length);
         this.clues.push(pointValClues[randIndex]);
       }
-    })
+    });
+  }
+
+  setDailyDoubles() {
+    for (let i = 0; i < this.dDCount; i++) {
+      let index = this.dDLocations[i]
+      const { question, answer, pointValue, categoryId } = this.clues[index];
+      const dD = new DailyDouble(question, answer, pointValue, categoryId);
+      this.clues.splice(index, 1, dD);
+    }
   }
 
   findHighestPointValue() {

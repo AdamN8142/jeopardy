@@ -4,7 +4,7 @@ const Player = require('../js/Player.js');
 
 
 describe('Player', function() {
-  it('should instaniate Player', function() {
+  it('should instantiate Player', function() {
     const player =  new Player('Jeo')
     expect(player.name).to.equal('Jeo')
   })

@@ -10,12 +10,12 @@
       <h2 class="h2">THIS IS</h2>
       <h1 class="h1">JEOPARDY</h1>
       <form class="form">
+        <label for="name-0"></label>
+        <input type="text" id="name-0">
         <label for="name-1"></label>
         <input type="text" id="name-1">
         <label for="name-2"></label>
         <input type="text" id="name-2">
-        <label for="name-3"></label>
-        <input type="text" id="name-3">
         <input type="submit" value="Start" class="input--submit">
       </form>
     <header class="header">
@@ -26,45 +26,51 @@
       </form>
     </header>
     <main class="main">
-      <article class="article article__cat1 article__header">Category 1</article>
-      <article class="article article__cat2 article__header">Category 2</article>
-      <article class="article article__cat3 article__header">Category 3</article>
-      <article class="article article__cat4 article__header">Category 4</article>
-      <article class="article article__cat1--100">100</article>
-      <article class="article article__cat2--100">100</article>
-      <article class="article article__cat3--100">100</article>
-      <article class="article article__cat4--100">100</article>
-      <article class="article article__cat1--200">200</article>
-      <article class="article article__cat2--200">200</article>
-      <article class="article article__cat3--200">200</article>
-      <article class="article article__cat4--200">200</article>
-      <article class="article article__cat1--300">300</article>
-      <article class="article article__cat2--300">300</article>
-      <article class="article article__cat3--300">300</article>
-      <article class="article article__cat4--300">300</article>
-      <article class="article article__cat1--400">400</article>
-      <article class="article article__cat2--400">400</article>
-      <article class="article article__cat3--400">400</article>
-      <article class="article article__cat4--400">400</article>
+      <article class="article article__cat0 article__header">Category 1</article>
+      <article class="article article__cat1 article__header">Category 2</article>
+      <article class="article article__cat2 article__header">Category 3</article>
+      <article class="article article__cat3 article__header">Category 4</article>
+      <article class="article article__cat0--100" data-colrow="0">100</article>
+      <article class="article article__cat1--100" data-colrow="4">100</article>
+      <article class="article article__cat2--100" data-colrow="8">100</article>
+      <article class="article article__cat3--100" data-colrow="12">100</article>
+      <article class="article article__cat0--200" data-colrow="1">200</article>
+      <article class="article article__cat1--200" data-colrow="5">200</article>
+      <article class="article article__cat2--200" data-colrow="9">200</article>
+      <article class="article article__cat3--200" data-colrow="13">200</article>
+      <article class="article article__cat0--300" data-colrow="2">300</article>
+      <article class="article article__cat1--300" data-colrow="6">300</article>
+      <article class="article article__cat2--300" data-colrow="10">300</article>
+      <article class="article article__cat3--300" data-colrow="14">300</article>
+      <article class="article article__cat0--400" data-colrow="3">400</article>
+      <article class="article article__cat1--400" data-colrow="7">400</article>
+      <article class="article article__cat2--400" data-colrow="11">400</article>
+      <article class="article article__cat3--400" data-colrow="15">400</article>
     </main>
     <footer class="footer">
       <section class="section__player">
-        <h4 class="h4__player-1-name">Player 1</h4>
+        <h4 class="h4__player-0-name">Player 1</h4>
+        Score: <span class="span__player-0-score"></span>
+      </section>
+      <section class="section__player">
+        <h4 class="h4__player-1-name">Player 2</h4>
         Score: <span class="span__player-1-score"></span>
       </section>
       <section class="section__player">
-        <h4 class="h4__player-2-name">Player 2</h4>
+        <h4 class="h4__player-2-name">Player 3</h4>
         Score: <span class="span__player-2-score"></span>
-      </section>
-      <section class="section__player">
-        <h4 class="h4__player-3-name">Player 3</h4>
-        Score: <span class="span__player-3-score"></span>
       </section>
     </footer>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/dataset.js"></script>
     <script type="text/javascript" src="js/domUpdates.js"></script>
+    <script type="text/javascript" src="js/Player.js"></script>
+    <script type="text/javascript" src="js/Game.js"></script>
+    <script type="text/javascript" src="js/Round.js"></script>
+    <script type="text/javascript" src="js/Clue.js"></script>
+    <script type="text/javascript" src="js/DailyDouble.js"></script>
   </body>
 </html>

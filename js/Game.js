@@ -1,5 +1,5 @@
 class Game {
-  constructor(round, activePlayer) {
+  constructor(round = 1, activePlayer) {
     this.round = round;
     this.activePlayer = activePlayer;
   }

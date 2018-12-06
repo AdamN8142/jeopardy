@@ -1,9 +1,10 @@
 class Clue {
-  constructor(question, answer, pointValue, category) {
+  constructor(question, answer, pointValue, categoryId, dailyDouble = false) {
     this.question = question;
     this.answer = answer;
     this.pointValue = pointValue;
-    this.category = category;
+    this.categoryId = categoryId;
+    this.dailyDouble = dailyDouble;
   }
 
   validateAnswer() {

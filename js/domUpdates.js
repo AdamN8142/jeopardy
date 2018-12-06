@@ -20,15 +20,17 @@ const jeopardy = {
 $('.input--submit').on('click', instantiatePlayers);
 
 function presentClue(event) {
-  const id = event.target.dataset.id;
-  const selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
-  if (selectedClue.dailyDouble === true) {
-    alert('DAILY DOUBLE!\n' + selectedClue.question);
-  } else {
-    alert(selectedClue.question);
+  if (event.target.innerHTML !== '') {
+    const id = event.target.dataset.id;
+    const selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
+    if (selectedClue.dailyDouble === true) {
+      alert('DAILY DOUBLE!\n' + selectedClue.question);
+    } else {
+      alert(selectedClue.question);
+    }
+    event.target.innerHTML = '';
+    jeopardy.game.cluesRemaining--;
   }
-  event.target.innerHTML = '';
-  jeopardy.game.cluesRemaining--;
 }
 
 function instantiatePlayers(event) {

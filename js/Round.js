@@ -25,11 +25,11 @@ class Round {
         return clue.categoryId === data.categories[category];
       });
       for (let i = 1; i < 5; i++) {
-        const pointValClues = categoryClues.filter(clue => {
+        const pointValueClues = categoryClues.filter(clue => {
           return clue.pointValue === 100 * i;
         });
-        const randomIndex = Math.floor(Math.random() * pointValClues.length);
-        this.clues.push(pointValClues[randomIndex]);
+        const randomIndex = Math.floor(Math.random() * pointValueClues.length);
+        this.clues.push(pointValueClues[randomIndex]);
       }
     });
   }

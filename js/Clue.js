@@ -11,3 +11,12 @@ class Clue {
     
   }
 }
+
+
+
+
+
+
+if (typeof module !== 'undefined') {
+  module.exports = Clue;
+}

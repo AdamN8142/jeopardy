@@ -7,3 +7,9 @@ class DailyDouble extends Clue {
     
   }
 }
+
+
+
+if (typeof module !== 'undefined') {
+  module.exports = DailyDouble;
+}

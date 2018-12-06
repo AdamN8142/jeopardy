@@ -47,3 +47,8 @@ class Round {
 
   }
 }
+
+
+if (typeof module !== 'undefined') {
+  module.exports = Round;
+}

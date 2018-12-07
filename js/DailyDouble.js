@@ -1,4 +1,4 @@
-const Clue = require('../js/Clue.js');
+// const Clue = require('../js/Clue.js');
 
 class DailyDouble extends Clue {
   constructor(question, answer, pointValue, category) {
@@ -9,8 +9,6 @@ class DailyDouble extends Clue {
     
   }
 }
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = DailyDouble;

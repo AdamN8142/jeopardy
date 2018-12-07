@@ -49,3 +49,20 @@ body {
   text-align: center;
   height: 50px;
 }
+
+.section__start-screen {
+  text-align: center;
+}
+
+.label, .input--name {
+  display: block;
+  margin: auto;
+}
+
+.input--name {
+  margin-bottom: 20px;
+}
+
+.body--hidden {
+  display: none;
+}

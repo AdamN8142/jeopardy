@@ -1,18 +1,19 @@
+$( document ).ready(domUpdates.showStartScreen);
+
 const jeopardy = {
   players: [],
   rounds: [],
   game: {},
 };
 
-$('.input--submit').on('click', instantiatePlayers);
-
 function instantiatePlayers(event) {
   event.preventDefault();
   jeopardy.players.push(new Player($('#name-0').val()));
   jeopardy.players.push(new Player($('#name-1').val()));
   jeopardy.players.push(new Player($('#name-2').val()));
+  domUpdates.removeStartScreen();
   domUpdates.updatePlayersOnDOM();
-  this.disabled = true;
+  // this.disabled = true;
   instantiateGame();
 }
 

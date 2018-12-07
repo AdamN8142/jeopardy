@@ -22,7 +22,7 @@ const domUpdates = {
   updateCategoriesOnDOM() {
     const currentRound = jeopardy.game.round - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
-      $(`.article__cat${i}`).text(jeopardy.categoryNames[category]);
+      $(`.article__cat${i}`).text(category);
     });
   }
 }

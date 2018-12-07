@@ -23,7 +23,7 @@ class Round {
 
   setClues() {
     this.categories.forEach(category => {
-      const categoryClues = jeopardy.clues.filter(clue => {
+      const categoryClues = jeopardy.game.clues.filter(clue => {
         return clue.categoryId === data.categories[category];
       });
       for (let i = 1; i < 5; i++) {
@@ -33,6 +33,22 @@ class Round {
         const randomIndex = Math.floor(Math.random() * pointValueClues.length);
         this.clues.push(pointValueClues[randomIndex]);
       }
+    });
+  }
+
+  setCategoryNames() {
+    this.categories = this.categories.map(name => {
+      const letters = name.split('');
+      let spacedName = letters[0].toUpperCase();
+      for (let i = 1; i < letters.length; i++) {
+        if (letters[i] === letters[i].toUpperCase()
+          && letters[i - 1] !== letters[i - 1].toUpperCase()) {
+          spacedName += ' ' + letters[i];
+        } else {
+          spacedName += letters[i];
+        }
+      }
+      return spacedName;
     });
   }
 

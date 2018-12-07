@@ -1,21 +1,7 @@
-
 const jeopardy = {
   players: [],
-  clues: [],
   rounds: [],
   game: {},
-  categoryNames: {
-    unitedStatesHistory: 'United States History',
-    lifeSciences: 'Life Sciences',
-    publicHealth: 'Public Health',
-    educationJargon: 'Education Jargon',
-    nameThatBoardGame: 'Name That Board Game',
-    americanLiterature: 'American Literature',
-    biographies: 'Biographies',
-    americanCities: 'American Cities',
-    food: 'Food',
-    cableTV: 'Cable TV'
-  }
 };
 
 $('.input--submit').on('click', instantiatePlayers);
@@ -41,7 +27,7 @@ function instantiateGame() {
 function instantiateClues() {
   data.clues.forEach(clue => {
     const { question, answer, pointValue, categoryId } = clue;
-    jeopardy.clues.push(new Clue(question, answer, pointValue, categoryId));
+    jeopardy.game.clues.push(new Clue(question, answer, pointValue, categoryId));
   });
 }
 
@@ -68,5 +54,6 @@ function configureRounds() {
   jeopardy.rounds.forEach((round, i) => {
     jeopardy.rounds[i].setClues();
     jeopardy.rounds[i].randomizeDailyDoubles();
+    jeopardy.rounds[i].setCategoryNames();
   });
 }

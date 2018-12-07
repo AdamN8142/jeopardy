@@ -32,14 +32,43 @@ const domUpdates = {
     if (event.target.innerHTML !== '') {
       const id = event.target.dataset.id;
       const selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
+      console.log(selectedClue)
       if (selectedClue.dailyDouble === true) {
-        
-        alert('DAILY DOUBLE!\n' + selectedClue.question);
+        domUpdates.showPopUp(selectedClue, true);
       } else {
-        alert(selectedClue.question);
+        domUpdates.showPopUp(selectedClue, false);
       }
       event.target.innerHTML = '';
       jeopardy.game.cluesRemaining--;
+    }
+  },
+
+  showPopUp(clue, isDailyDouble){
+    let popUp = $('<section class="section__pop-up"></section>')
+    popUp.css({
+     'background-color': 'lightblue',
+      height: '100vh',
+      width: '100%',
+      position: 'absolute'
+    });
+    popUp.html(`
+      ${clue.question} ${isDailyDouble}
+      <input type="text" class="input--answer">
+      <input type="submit" value="Start" class="input--submit">
+    `)
+    $('body').prepend(popUp)
+    $('.input--submit').on('click', function(){
+      domUpdates.showClueFeedback(clue)
+    })
+  },
+
+  showClueFeedback(clue){
+    let userAnswer = $('.input--answer').val()
+    console.log(clue, 'testing')
+    if(clue.validateAnswer(userAnswer)){
+      console.log('You got it')
+    }else{
+      console.log('NOPE')
     }
   },
 

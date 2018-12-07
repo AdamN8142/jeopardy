@@ -7,8 +7,13 @@ class Clue {
     this.dailyDouble = dailyDouble;
   }
 
-  validateAnswer() {
-    
+  validateAnswer(userAnswer) {
+    console.log(userAnswer, this.answer)
+    if(userAnswer === this.answer){
+      return true;
+    }else {
+      return false; 
+    }
   }
 }
 

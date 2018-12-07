@@ -1,5 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
+global.Clue = require('../js/Clue.js');
 const DailyDouble = require('../js/DailyDouble.js');
 
 describe('DailyDouble', function() {

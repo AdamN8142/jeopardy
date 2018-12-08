@@ -46,6 +46,7 @@ const domUpdates = {
       .filter(num => {
         return !isNaN(num);
       }))
+    const maxWager = Math.max(jeopardy.game.activePlayer.score, maxPointValue);
     // have an input box 
     // change the pointValue of the dailydouble to their wager
     domUpdates.showPopUp(clue);

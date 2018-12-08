@@ -8,10 +8,9 @@ class Clue {
   }
 
   validateAnswer(userAnswer) {
-    console.log(userAnswer, this.answer)
-    if(userAnswer === this.answer){
+    if (userAnswer === this.answer) {
       return true;
-    }else {
+    } else {
       return false; 
     }
   }

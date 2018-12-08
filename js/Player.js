@@ -1,7 +1,9 @@
 class Player {
-  constructor(name) {
+  constructor(id, name, isActivePlayer = false) {
+    this.id = id;
     this.name = name;
     this.score = 0;
+    this.isActivePlayer = isActivePlayer;
   }
   
   updateScore(value) {

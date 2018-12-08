@@ -8,9 +8,9 @@ const jeopardy = {
 
 function instantiatePlayers(event) {
   event.preventDefault();
-  jeopardy.players.push(new Player($('#name-0').val()));
-  jeopardy.players.push(new Player($('#name-1').val()));
-  jeopardy.players.push(new Player($('#name-2').val()));
+  jeopardy.players.push(new Player(0, $('#name-0').val(), true));
+  jeopardy.players.push(new Player(1, $('#name-1').val()));
+  jeopardy.players.push(new Player(2, $('#name-2').val()));
   domUpdates.removeStartScreen();
   domUpdates.updatePlayersOnDOM();
   // this.disabled = true;
@@ -18,17 +18,18 @@ function instantiatePlayers(event) {
 }
 
 function instantiateGame() {
-  jeopardy.game = new Game(jeopardy.players[0]);
+  jeopardy.game = new Game();
   $('.span--round').text(jeopardy.game.round);
   instantiateClues();
   instantiateRounds();
+  checkGameState();
   $('.main').on('click', domUpdates.presentClue);
 }
 
 function instantiateClues() {
   data.clues.forEach(clue => {
     const { question, answer, pointValue, categoryId } = clue;
-    jeopardy.game.clues.push(new Clue(question, answer, pointValue, categoryId));
+    jeopardy.game.allClues.push(new Clue(question, answer, pointValue, categoryId));
   });
 }
 
@@ -57,4 +58,13 @@ function configureRounds() {
     jeopardy.rounds[i].randomizeDailyDoubles();
     jeopardy.rounds[i].setCategoryNames();
   });
+}
+
+function checkGameState() {
+  // check who the active player is
+  
+  // call a function from domUpdates to indicate who that player is
+  domUpdates.highlightPlayer()
+  // check how many clues are left
+  // go to the next round when there are zero clues left 
 }

@@ -44,7 +44,7 @@ body {
   grid-template-columns: repeat(3, 1fr)
 }
 
-.section__player {
+.section {
   border: 2px solid black;
   text-align: center;
   height: 50px;
@@ -65,4 +65,17 @@ body {
 
 .body--hidden {
   display: none;
+}
+
+.section__pop-up {
+  text-align: center;
+}
+
+.input--answer {
+  display: block;
+  margin: auto;
+}
+
+.section--highlighted {
+  background-color: white;
 }

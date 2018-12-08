@@ -43,7 +43,7 @@ const domUpdates = {
     }
   },
 
-  showPopUp(clue, isDailyDouble){
+  showPopUp(clue, isDailyDouble) {
     let popUp = $('<section class="section__pop-up"></section>')
     popUp.css({
      'background-color': 'lightblue',
@@ -52,24 +52,36 @@ const domUpdates = {
       position: 'absolute'
     });
     popUp.html(`
-      ${clue.question} ${isDailyDouble}
-      <input type="text" class="input--answer">
-      <input type="submit" value="Start" class="input--submit">
-    `)
+      Daily Double: ${isDailyDouble} 
+      <p class="p--question">
+        ${clue.question}
+        <input type="text" class="input--answer">
+        <input type="submit" value="Submit" class="input--submit">
+      </p>
+    `);
     $('body').prepend(popUp)
-    $('.input--submit').on('click', function(){
-      domUpdates.showClueFeedback(clue)
-    })
+    $('.input--submit').on('click', function() {
+      domUpdates.showClueFeedback(clue);
+    });
   },
 
   showClueFeedback(clue){
     let userAnswer = $('.input--answer').val()
-    console.log(clue, 'testing')
-    if(clue.validateAnswer(userAnswer)){
-      console.log('You got it')
-    }else{
-      console.log('NOPE')
+    let feedback;
+    if (clue.validateAnswer(userAnswer)) {
+      jeopardy.game.activePlayer.score += clue.pointValue;
+      feedback = $('<p class="p--feedback">Correct</p>')
+    } else {
+      jeopardy.game.activePlayer.score -= clue.pointValue;
+      feedback = $('<p class="p--feedback">NOPE</p>')
+      jeopardy.game.changeActivePlayer();
     }
+    $('.p--question').append(feedback);
+    $('.p--question').append($('<button class="button--exit">Go back to main screen</button>'))
+    $('.button--exit').on('click', function() {
+      $('.section__pop-up').remove();
+    });
+    domUpdates.updateScoresOnDOM();
   },
 
   updatePlayersOnDOM() {
@@ -80,9 +92,25 @@ const domUpdates = {
   },
 
   updateCategoriesOnDOM() {
-    const currentRound = jeopardy.game.round - 1;
+    const currentRound = jeopardy.game.roundNumber - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
       $(`.article__cat${i}`).text(category);
     });
+  },
+
+  updateScoresOnDOM() {
+    jeopardy.players.forEach((player, index) => {
+      $(`.span__player-${index}-score`).text(player.score); 
+    });   
+  },
+
+  highlightPlayer(player) {
+    jeopardy.players.forEach((player, i) => {
+      if  (player.isActivePlayer === true) {
+        $(`.section__player-${i}`).addClass('section--highlighted')
+      } else {
+        $(`.section__player-${i}`).removeClass('section--highlighted')
+      };
+    })    
   }
 }

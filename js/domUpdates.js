@@ -6,8 +6,10 @@ const domUpdates = {
 
   presentClue(event) {
     if (event.target.innerHTML !== '') {
+      jeopardy.cluesRemaining--;
+      const roundIndex = jeopardy.roundNumber - 1
       const id = event.target.id;
-      const selectedClue = jeopardy.rounds[0].clues[parseInt(id)];
+      const selectedClue = jeopardy.rounds[roundIndex].clues[parseInt(id)];
       console.log(selectedClue)
       if (selectedClue.dailyDouble === true) {
         domUpdates.showWagerScreen(selectedClue);
@@ -15,7 +17,6 @@ const domUpdates = {
         domUpdates.showClueScreen(selectedClue, false);
       }
       event.target.innerHTML = '';
-      jeopardy.cluesRemaining--;
     }
   },
 
@@ -49,7 +50,7 @@ const domUpdates = {
   },
 
   validateWager(maxWager, clue){
-    if($('.input--wager').val() > 5 && $('.input--wager').val() < maxWager){
+    if($('.input--wager').val() >= 5 && $('.input--wager').val() <= maxWager){
       const userWager = parseInt($('.input--wager').val())
       clue.setPointValue(userWager);
       $('.section__pop-up').remove();
@@ -123,5 +124,41 @@ const domUpdates = {
         $(`.section__player-${i}`).removeClass('section--highlighted')
       };
     })    
+  },
+
+  goToRound2() {
+    domUpdates.updateCategoriesOnDOM();
+    domUpdates.updateRoundNumberOnDOM()
+    $('.article__clue').each(function(index) {
+      if (index < 4) {
+        $(this).text(200);
+      } else if (index < 8) {
+        $(this).text(400);
+      } else if (index < 12) {
+        $(this).text(600);
+      } else {
+        $(this).text(800);
+      }
+    });
+  },
+
+  goToFinalJeopardy(){
+    // make new (3) pop up screen
+    //Each screen has to display category
+    //Each has an input box 
+    //Change active player as we go through screens
+    //Give new property (.wager), and assign it to their wager amount 
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }

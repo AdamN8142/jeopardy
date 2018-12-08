@@ -30,8 +30,31 @@ const domUpdates = {
       }))
     const maxWager = Math.max(jeopardy.activePlayer.score, maxPointValue);
     // have an input box 
+       let popUp = $('<section class="section__pop-up"></section>');
+       console.log(maxWager)
+    popUp.html(`
+      <p class="p--question">
+        Enter a wager between 5 and ${maxWager}!
+        <input type="number" class="input--wager">
+        <input type="submit" value="Submit" class="input--submit-wager">
+      </p>
+    `);
+    $('body').prepend(popUp);
+    $('.input--submit').disabled = false;
+    $('.input--submit-wager').on('click', function() {
+      domUpdates.validateWager(maxWager, clue);
+    });
+  
     // change the pointValue of the dailydouble to their wager
-    domUpdates.showClueScreen(clue);
+  },
+
+  validateWager(maxWager, clue){
+    if($('.input--wager').val() > 5 && $('.input--wager').val() < maxWager){
+      const userWager = parseInt($('.input--wager').val())
+      clue.setPointValue(userWager);
+      $('.section__pop-up').remove();
+      domUpdates.showClueScreen(clue);
+    }
   },
 
   showClueScreen(clue) {

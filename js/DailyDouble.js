@@ -3,8 +3,8 @@ class DailyDouble extends Clue {
     super(question, answer, pointValue, category, true);
   }
 
-  setPointValue() {
-    
+  setPointValue(userWager) {
+    this.pointValue = userWager;
   }
 }
 

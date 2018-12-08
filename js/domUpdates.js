@@ -14,7 +14,7 @@ const domUpdates = {
       if (selectedClue.dailyDouble === true) {
         domUpdates.showWagerScreen(selectedClue);
       } else {
-        domUpdates.showClueScreen(selectedClue, false);
+        domUpdates.showClueScreen(selectedClue);
       }
       event.target.innerHTML = '';
     }
@@ -153,7 +153,7 @@ const domUpdates = {
 
 
 
-
+//
 
 
 

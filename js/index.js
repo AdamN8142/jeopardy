@@ -1,34 +1,30 @@
-$( document ).ready(domUpdates.showStartScreen);
+const jeopardy = new Game();
 
-const jeopardy = {
-  players: [],
-  rounds: [],
-  game: {},
-};
+$('.input--submit').on('click', startGame);
+$('.main--clue-squares').on('click', domUpdates.presentClue);
 
-function instantiatePlayers(event) {
+function startGame(event) {
   event.preventDefault();
-  jeopardy.players.push(new Player(0, $('#name-0').val(), true));
-  jeopardy.players.push(new Player(1, $('#name-1').val()));
-  jeopardy.players.push(new Player(2, $('#name-2').val()));
-  domUpdates.removeStartScreen();
-  domUpdates.updatePlayersOnDOM();
-  // this.disabled = true;
-  instantiateGame();
-}
-
-function instantiateGame() {
-  jeopardy.game = new Game();
+  instantiatePlayers();
   instantiateClues();
   instantiateRounds();
   checkGameState();
-  $('.main--clue-squares').on('click', domUpdates.presentClue);
+  domUpdates.removeStartScreen();
+  domUpdates.updatePlayerNamesOnDOM();
+  domUpdates.updateRoundNumberOnDOM();
+}
+
+function instantiatePlayers() {
+  jeopardy.addPlayer(new Player($('#name-0').val(), true));
+  jeopardy.addPlayer(new Player($('#name-1').val()));
+  jeopardy.addPlayer(new Player($('#name-2').val()));
+  jeopardy.activePlayer = jeopardy.players[0];
 }
 
 function instantiateClues() {
   data.clues.forEach(clue => {
     const { question, answer, pointValue, categoryId } = clue;
-    jeopardy.game.allClues.push(new Clue(question, answer, pointValue, categoryId));
+    jeopardy.allClues.push(new Clue(question, answer, pointValue, categoryId));
   });
 }
 
@@ -60,5 +56,9 @@ function configureRounds() {
 }
 
 function checkGameState() {
-  domUpdates.highlightPlayer()
+  domUpdates.highlightPlayer();
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = jeopardy;
 }

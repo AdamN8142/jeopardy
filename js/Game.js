@@ -1,9 +1,10 @@
 class Game {
   constructor() {
     this.roundNumber = 1;
+    this.players = [];
+    this.rounds = [];
     this.allClues = [];
     this.activePlayerIndex = 0;
-    this.activePlayer = jeopardy.players[0]
     this.cluesRemaining = 16;
   }
 
@@ -18,8 +19,12 @@ class Game {
       this.activePlayerIndex = 0;
     }
     this.activePlayer.isActivePlayer = false;
-    this.activePlayer = jeopardy.players[this.activePlayerIndex];
+    this.activePlayer = this.players[this.activePlayerIndex];
     this.activePlayer.isActivePlayer = true;
+  }
+
+  addPlayer(player) {
+    this.players.push(player);
   }
 }
 

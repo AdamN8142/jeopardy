@@ -1,24 +1,6 @@
 const domUpdates = {
-  showStartScreen() {
-    let startScreen = $('<section class="section__start-screen"></section>');
-    startScreen.html(`
-      <h2 class="h2">THIS IS</h2>
-      <h1 class="h1">JEOPARDY</h1>
-      <form class="form">
-        <label for="name-0" class="label">Player 1</label>
-        <input type="text" id="name-0" class="input--name">
-        <label for="name-1" class="label">Player 2</label>
-        <input type="text" id="name-1" class="input--name">
-        <label for="name-2" class="label">Player 3</label>
-        <input type="text" id="name-2" class="input--name">
-        <input type="submit" value="Start" class="input--submit">
-      </form>
-    `);
-    $('body').prepend(startScreen);
-    $('.input--submit').on('click', instantiatePlayers);
-  },
-
   removeStartScreen() {
+    $('.body--hidden').removeClass('body--hidden');
     $('.section__start-screen').remove();
   },
 
@@ -30,10 +12,10 @@ const domUpdates = {
       if (selectedClue.dailyDouble === true) {
         domUpdates.showWagerScreen(selectedClue);
       } else {
-        domUpdates.showPopUp(selectedClue, false);
+        domUpdates.showClueScreen(selectedClue, false);
       }
       event.target.innerHTML = '';
-      jeopardy.game.cluesRemaining--;
+      jeopardy.cluesRemaining--;
     }
   },
 
@@ -46,13 +28,13 @@ const domUpdates = {
       .filter(num => {
         return !isNaN(num);
       }))
-    const maxWager = Math.max(jeopardy.game.activePlayer.score, maxPointValue);
+    const maxWager = Math.max(jeopardy.activePlayer.score, maxPointValue);
     // have an input box 
     // change the pointValue of the dailydouble to their wager
-    domUpdates.showPopUp(clue);
+    domUpdates.showClueScreen(clue);
   },
 
-  showPopUp(clue) {
+  showClueScreen(clue) {
     let popUp = $('<section class="section__pop-up"></section>');
     popUp.html(`
       <p class="p--question">
@@ -71,12 +53,12 @@ const domUpdates = {
     let userAnswer = $('.input--answer').val()
     let feedback;
     if (clue.validateAnswer(userAnswer)) {
-      jeopardy.game.activePlayer.score += clue.pointValue;
+      jeopardy.activePlayer.score += clue.pointValue;
       feedback = $('<p class="p--feedback">Correct</p>')
     } else {
-      jeopardy.game.activePlayer.score -= clue.pointValue;
+      jeopardy.activePlayer.score -= clue.pointValue;
       feedback = $('<p class="p--feedback">NOPE</p>')
-      jeopardy.game.changeActivePlayer();
+      jeopardy.changeActivePlayer();
     }
     $('.p--question').append(feedback);
     $('.p--question').append($('<button class="button--exit">Go back to main screen</button>'))
@@ -87,15 +69,18 @@ const domUpdates = {
     domUpdates.updateScoresOnDOM();
   },
 
-  updatePlayersOnDOM() {
-    $('.body--hidden').removeClass('body--hidden')
+  updatePlayerNamesOnDOM() {
     jeopardy.players.forEach((player, index) => {
       $(`.h4__player-${index}-name`).text(player.name); 
     });
   },
 
+  updateRoundNumberOnDOM() {
+    $('.span--round').text(jeopardy.roundNumber);
+  },
+
   updateCategoriesOnDOM() {
-    const currentRound = jeopardy.game.roundNumber - 1;
+    const currentRound = jeopardy.roundNumber - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
       $(`.article__cat${i}`).text(category);
     });
@@ -108,7 +93,6 @@ const domUpdates = {
   },
 
   highlightPlayer(player) {
-    $('.span--round').text(jeopardy.game.roundNumber);
     jeopardy.players.forEach((player, i) => {
       if  (player.isActivePlayer === true) {
         $(`.section__player-${i}`).addClass('section--highlighted')

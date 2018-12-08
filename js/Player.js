@@ -1,6 +1,5 @@
 class Player {
-  constructor(id, name, isActivePlayer = false) {
-    this.id = id;
+  constructor(name, isActivePlayer = false) {
     this.name = name;
     this.score = 0;
     this.isActivePlayer = isActivePlayer;

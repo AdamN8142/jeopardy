@@ -19,11 +19,10 @@ function instantiatePlayers(event) {
 
 function instantiateGame() {
   jeopardy.game = new Game();
-  $('.span--round').text(jeopardy.game.round);
   instantiateClues();
   instantiateRounds();
   checkGameState();
-  $('.main').on('click', domUpdates.presentClue);
+  $('.main--clue-squares').on('click', domUpdates.presentClue);
 }
 
 function instantiateClues() {
@@ -61,10 +60,5 @@ function configureRounds() {
 }
 
 function checkGameState() {
-  // check who the active player is
-  
-  // call a function from domUpdates to indicate who that player is
   domUpdates.highlightPlayer()
-  // check how many clues are left
-  // go to the next round when there are zero clues left 
 }

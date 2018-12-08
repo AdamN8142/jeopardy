@@ -21,17 +21,19 @@ body {
   float: right;
 }
 
-.main {
+.main__section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 100px);
   margin: 25px 100px;
+}
+
+.main--clue-squares {
+  grid-template-rows: repeat(4, 100px);
 }
 
 .article {
   border: 2px solid black;
   text-align: center;
-  padding-top: 10px;
   font-size: 70px;
 }
 
@@ -39,9 +41,14 @@ body {
   font-size: 30px;
 }
 
+.article__clue {
+  padding-top: 10px;
+}
+
 .footer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr)
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 100px;
 }
 
 .section {
@@ -78,4 +85,11 @@ body {
 
 .section--highlighted {
   background-color: white;
+}
+
+.section__start-screen, .section__pop-up {
+  background-color: lightblue;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }

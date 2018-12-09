@@ -63,18 +63,35 @@ const domUpdates = {
     popUp.html(`
       <p class="p--question">
         ${clue.question}
-        <input type="text" class="input--answer">
-        <input type="submit" value="Submit" class="input--submit">
+        ${domUpdates.generateMultipleChoices(clue)}
       </p>
     `);
     $('body').prepend(popUp);
     $('.input--submit').on('click', function() {
-      domUpdates.showClueFeedback(clue);
+      domUpdates.showClueFeedback(clue, this);
     });
   },
 
-  showClueFeedback(clue){
-    let userAnswer = $('.input--answer').val()
+  generateMultipleChoices(selectedClue){
+    let choices = [selectedClue];
+    const sameCategory = jeopardy.allClues.filter(clue => {
+      return clue.categoryId === selectedClue.categoryId && clue.answer !== selectedClue.answer;
+    })
+    const diffCategory = jeopardy.allClues.filter(clue => {
+      return clue.categoryId !== selectedClue.categoryId;;
+    })
+    randomizeArray(sameCategory);
+    randomizeArray(diffCategory);
+    choices.push(... sameCategory.slice(0,4), ...diffCategory.slice(0,3));
+    randomizeArray(choices);
+    choices = choices.map(clue => {
+      return `<input type="submit" value = "${clue.answer}" class= "input--submit">`
+    }).join('');
+    return choices
+  },
+
+  showClueFeedback(clue, button){
+    let userAnswer = button.value;
     let feedback;
     if (clue.validateAnswer(userAnswer)) {
       jeopardy.activePlayer.score += clue.pointValue;

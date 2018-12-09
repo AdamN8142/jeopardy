@@ -31,7 +31,7 @@ function instantiateClues() {
 
 function instantiateRounds() {
   const categories = Object.keys(data.categories);
-  randomizeCategories(categories);
+  randomizeArray(categories);
   for (let i = 0; i < 2; i++) {
     const roundCategories = categories.splice(0, 4);
     jeopardy.rounds.push(new Round(roundCategories, i + 1));
@@ -40,10 +40,10 @@ function instantiateRounds() {
   configureRounds();
 }
 
-function randomizeCategories(cats) {
-  for (let i = 0; i < 9; i++) {
-    const randomIndex = Math.floor((Math.random() * (10 - i))) + i;
-    [cats[i], cats[randomIndex]] = [cats[randomIndex], cats[i]];
+function randomizeArray(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    const randomIndex = Math.floor((Math.random() * (arr.length - i))) + i;
+    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
   }
 }
 

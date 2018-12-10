@@ -169,12 +169,37 @@ const domUpdates = {
   },
 
   goToFinalJeopardy(){
-    // make new (3) pop up screen
-    //Each screen has to display category
-    //Each has an input box 
-    //Change active player as we go through screens
-    //Give new property (.wager), and assign it to their wager amount 
-  }
+    let popUp = $('<section class="section__pop-up"></section>');
+    let popUpHTML = `
+    <h1> Final Jeopardy</h1>
+    <p> Category: ${jeopardy.rounds[2].categories[0]}</p>
+    `;
+    let finalPlayerCounte = 0;
+    jeopardy.players.forEach((player,index) => {
+      if (player.score > 5) {
+        popUpHTML += `
+        <p> ${player.name}, enter a wager between 5 and ${player.score}</p>
+        <input type="number" class="input--wager" data-player="${index}">
+        `;
+        finalPlayerCount++;
+      } else{
+        popUpHTML += `
+        <p> Sorry ${player.name}, You do not have enought points to play Final Jeopardy
+        `;
+      }
+    });
+
+    popUpHTML += `
+    <input type="submit" value = "Submit" class="input--submit-all-wagers">
+    `;
+    popUp.html(popUpHTML);
+    $('body').prepend(popUp);
+    $('.input--submit-all-wagers').on('click', function(){
+      domUpdates.validateFinalWagers(finalPlayerCount);
+    })
+  },
+
+  
 
 
 

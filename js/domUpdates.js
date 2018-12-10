@@ -174,7 +174,7 @@ const domUpdates = {
     <h1> Final Jeopardy</h1>
     <p> Category: ${jeopardy.rounds[2].categories[0]}</p>
     `;
-    let finalPlayerCounte = 0;
+    let finalPlayerCount = 0;
     jeopardy.players.forEach((player,index) => {
       if (player.score > 5) {
         popUpHTML += `
@@ -199,17 +199,73 @@ const domUpdates = {
     })
   },
 
-  
+  validateFinalWagers(finalPlayerCount) {
+    const finalPlayers = [];
+    for (let i = 0; i < finalPlayerCount; i++) {
+      const index = $('.input--wager').eq(i).data().player;
+      const player = jeopardy.players[index];
+      const wager = parseInt($('.input-wager').eq(i).val());
+        if(wager >= 5 && wager <= player.score){
+          player.wager = wager;
+          finalPlayers.push(player);
+        }
+    }
+    const validWagerCount = jeopardy.players.filter(player => {
+      return (player.wager != undefined)
+    }).length;
+    if (finalPlayerCount === validWagerCount) {
+      $('.section__pop-up').remove();
+      domUpdates.showFinalClue(finalPlayers);
+    }
+  },
+
+  showFinalClue() {
+    const finalClue = jeopardy.rounds[2].clues.find(clue => {
+      return clue.dailyDouble === true;
+    })
+    const finalAnswerButtons = domUpdates.generateAnswerButtons(finalClue);
+    let popUp = $(`
+      <section class="section__pop-up">
+        <p class="p--question">
+         ${finalClue.question}
+        </p>
+      </section>`);
+    $('body').prepend(popUp);
+    finalPlayers.forEach((player,index) => {
+      $('.p--question').append(`
+        <article class="article--player-choices">
+        ${player.name}, choose your answer:
+          <ul class="ul--answer-buttons" data-player="${index}">
+           ${finalAnswerButtons}
+          </ul>
+        </article>
+        `);
+    });
+    $('.input--submit').addClass('input--submit-final');
+    $('.input--submit').removeClass('input-submit');
+    $('.input--submit-final').on('click', function() {
+      domUpdates.validateFinalAnswers(finalPlayers, finalClue, this);
+    });
+  },
+
+  validateFinalAnswers(finalPlayers, finalClue, button) {
+    const index = $(button).closest('.ul--answer-buttons').data().player;
+    const userAnswer = $(button).val();
+    if (finalClue.validateAnswer(userAnswer)) {
+      finalPlayers[index].finalScore = finalPlayers[index].score + finalPlayers[index].wager;
+    } else {
+      finalPlayers[index].finalScore = finalPlayers[index].score - finalPlayers[index].wager;
+    }
+    $(button).closest('.ul--answer-buttons').find('.input--submit-final').prop("disabled", true);
+    const finalAnswerCount = finalPlayers.filer(player => {
+      return player.finalScore != undefined;
+    }).length;
+    if (finalAnswerCount === finalPlayers.length) {
+      $('.section__pop-up').remove()
+      domUpdates.goToWinnerScreen(finalPlayers);
+    }
+  },
 
 
 
 
-//
-
-
-
-
-
-
-
-}

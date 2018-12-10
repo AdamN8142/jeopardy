@@ -52,8 +52,10 @@ class Round {
     });
   }
 
-  findHighestPointValue() {
-
+  multiplyPoints(){
+    this.clues.forEach(clue => {
+      clue.pointValue *= 2; 
+    })
   }
 }
 

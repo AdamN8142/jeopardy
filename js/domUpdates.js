@@ -62,7 +62,9 @@ const domUpdates = {
     popUp.html(`
       <p class="p--question">
         ${clue.question}
-        ${domUpdates.generateMultipleChoices(clue)}
+        <ul class="ul--answer-buttons">
+        ${domUpdates.generateAnswerButtons(clue)}
+        </ul>
       </p>
     `);
     $('body').prepend(popUp);
@@ -71,7 +73,15 @@ const domUpdates = {
     });
   },
 
-  generateMultipleChoices(selectedClue){
+  generateAnswerButtons(selectedClue){
+    let choices = domUpdates.generateMultipleAnswers(selectedClue);
+    choices = choices.map(clue => {
+      return `<li><input type="submit" value = "${clue.answer}" class= "input--submit"></li>`
+    }).join('');
+    return choices;
+  },
+
+  generateMultipleAnswers(selectedClue) {
     let choices = [selectedClue];
     const sameCategory = jeopardy.allClues.filter(clue => {
       return clue.categoryId === selectedClue.categoryId && clue.answer !== selectedClue.answer;
@@ -83,13 +93,11 @@ const domUpdates = {
     randomizeArray(diffCategory);
     choices.push(... sameCategory.slice(0,4), ...diffCategory.slice(0,3));
     randomizeArray(choices);
-    choices = choices.map(clue => {
-      return `<input type="submit" value = "${clue.answer}" class= "input--submit">`
-    }).join('');
-    return choices
-  },
+    return choices;
+  }
 
   showClueFeedback(clue, button){
+    $('.ul--answer-buttons').remove();
     let userAnswer = button.value;
     let feedback;
     if (clue.validateAnswer(userAnswer)) {
@@ -105,6 +113,7 @@ const domUpdates = {
     $('.button--exit').on('click', function() {
       $('.section__pop-up').remove();
     });
+    domUpdates.updateScoresOnDOM();
     checkGameState()
     domUpdates.updateScoresOnDOM();
   },
@@ -133,16 +142,17 @@ const domUpdates = {
   },
 
   highlightPlayer(player) {
-    jeopardy.players.forEach((player, i) => {
+    jeopardy.players.forEach((player, index) => {
       if  (player.isActivePlayer === true) {
-        $(`.section__player-${i}`).addClass('section--highlighted')
+        $(`.section__player-${index}`).addClass('section--highlighted')
       } else {
-        $(`.section__player-${i}`).removeClass('section--highlighted')
+        $(`.section__player-${index}`).removeClass('section--highlighted')
       };
     })    
   },
 
   goToRound2() {
+    jeopardy.rounds[1].multiplyPoints();
     domUpdates.updateCategoriesOnDOM();
     domUpdates.updateRoundNumberOnDOM()
     $('.article__clue').each(function(index) {

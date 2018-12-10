@@ -21,21 +21,11 @@ const domUpdates = {
   },
 
   showWagerScreen(clue) {
-    // figure out the max wager the player is allowed
-    const maxPointValue = Math.max(...Array.from($('.article__clue'))
-      .map(square => {
-        return parseInt(square.textContent);
-      })
-      .filter(num => {
-        return !isNaN(num);
-      }))
-    const maxWager = Math.max(jeopardy.activePlayer.score, maxPointValue);
-    // have an input box 
-       let popUp = $('<section class="section__pop-up"></section>');
-       console.log(maxWager)
+    const maxWager = domUpdates.calculateMaxWager(jeopardy.activePlayer);
+    let popUp = $('<section class="section__pop-up"></section>');
     popUp.html(`
       <p class="p--question">
-        Enter a wager between 5 and ${maxWager}!
+        Daily Double! Enter a wager between 5 and ${maxWager}!
         <input type="number" class="input--wager">
         <input type="submit" value="Submit" class="input--submit-wager">
       </p>
@@ -45,8 +35,17 @@ const domUpdates = {
     $('.input--submit-wager').on('click', function() {
       domUpdates.validateWager(maxWager, clue);
     });
-  
-    // change the pointValue of the dailydouble to their wager
+  },
+
+  calculateMaxWager(player) {
+    const maxPointValue = Math.max(...Array.from($('.article__clue'))
+      .map(square => {
+        return parseInt(square.textContent);
+      })
+      .filter(num => {
+        return !isNaN(num);
+      }));
+    return Math.max(player.score, maxPointValue)
   },
 
   validateWager(maxWager, clue){

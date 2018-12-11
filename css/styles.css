@@ -1,5 +1,5 @@
 * {
-  border-style: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -10,23 +10,36 @@ body {
   background-color: lightgray;
   color: #ffffff;
   background-image: url(../images/vegas.jpg);
-/*  background-repeat: no-repeat;*/
-
 }
 
 .h2 {
-  margin: 40px auto 10px;
-  font-size: 40px;
+  margin: 20px auto 10px;
+  font-size: 60px;
   font-weight: 600;
   text-align: center;
+  color: thistle;
+  text-shadow:
+   -1px -1px 0 #000,
+   2px -1px 0 #000,
+   -1px 1px 0 #000,
+   2px 1px 0 #000;
 }
 
 .h1 {
   margin: 10px auto 20px;
-  font-size: 80px;
+  color: thistle;
+  font-size: 178px;
   font-weight: 800;
   text-align: center;
+  padding-bottom: 15px;
+  outline-style: ridge;
+  text-shadow:
+    -1px -1px 0 #000,
+    4px -1px 0 #000,
+    -1px 1px 0 #000,
+    4px 1px 0 #000;
 }
+
 
 .h1__main-screen {
   margin: 0 0 10px;
@@ -40,32 +53,42 @@ body {
 .form {
   display: grid;
   justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  width: 500px;
+  margin:auto;
+  opacity: .8;
+  margin-top: 40px;
 }
 
 .label {
+  color: lightskyblue;
   padding: 0 20px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
+  opacity: 1;
 }
 
 .input--name, .input--wager {
   border: none;
+  background-color: lightslategrey;
   width: 400px;
   height: 40px;
-  font-size: 36px;
+  font-size: 26px;
+  opacity: .65;
   border-radius: 20px;
   padding: 0 20px;
   margin-bottom: 20px;
+  margin-top: 5px;
 }
 
 .header {
-  /* text-align: center; */
   margin: 25px 100px;
 }
 
 .input--name::placeholder {
-  color: #D3D3D3;
-  filter:opacity(.5);
+  color: thistle;
+  filter:opacity(.75);
 }
 
 .button__reset {
@@ -109,10 +132,6 @@ body {
   text-align: center;
   height: 80px;
   font-size: 24px;
-}
-
-.section__start-screen {
-  /* text-align: center; */
 }
 
 .body--hidden {
@@ -193,11 +212,13 @@ body {
 }
 
 .input--submit-names {
+  grid-column: 2/3;
   height: 36px;
-  width: 440px;
+  width: 200px;
+  justify-self: center;
   border-radius: 18px;
-  background-color: #2e1d75;
-  color: #ffffff;
+  color: thistle;
+  margin-top: 10px;
 }
 
 .h4__player-name {
@@ -209,5 +230,3 @@ body {
   display: flex;
   justify-content: space-around;
 }
-
-

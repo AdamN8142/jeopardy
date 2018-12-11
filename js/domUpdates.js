@@ -82,7 +82,7 @@ const domUpdates = {
   generateAnswerButtons(selectedClue) {
     let choices = domUpdates.generateMultipleAnswers(selectedClue);
     choices = choices.map(clue => {
-      return `<li class="li"><input type="submit" value="${clue.answer}" class="input--submit"></li>`
+      return `<li class="li"><input type="submit" value="${clue.answer}" class="input--submit input--submit-answers"></li>`
     }).join('');
     return choices;
   },

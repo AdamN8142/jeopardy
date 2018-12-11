@@ -7,9 +7,25 @@
 }
 
 body {
-  background-color: lightgray;
+  background-color: black;
   color: #ffffff;
+}
+
+.section__main-screen {
+  background-image: url(https://www.holidayguru.ie/wp-content/uploads/2016/04/Las-Vegas-Strip-at-night-high-vantage-iStock_000082066557_Large-2.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-position: center;
+}
+
+.section__start-screen {
   background-image: url(../images/vegas.jpg);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }
 
 .h2 {
@@ -46,6 +62,7 @@ body {
 
 .h1__main-screen {
   font-size: 90px;
+  color:red;
   text-shadow:
     -1px -1px 0 lightskyblue,
     1px -1px 0 lightskyblue,
@@ -109,30 +126,17 @@ body {
   margin: 25px 100px;
 }
 
-.main--clue-squares {
-  grid-template-rows: repeat(4, 100px);
-}
-
 .article {
   border: 2px solid #000000;
   text-align: center;
   font-size: 70px;
 }
 
-.article__header {
-  font-size: 30px;
-}
-
-.article__clue {
-  padding-top: 5px;
-}
 
 .footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 100px 25px;
-  background-color: dimgrey;
-  opacity: .7;
 }
 
 .section__player {
@@ -140,6 +144,8 @@ body {
   text-align: center;
   height: 80px;
   font-size: 24px;
+  background-color: #111;
+  opacity: .88;
 }
 
 .body--hidden {
@@ -147,7 +153,7 @@ body {
 }
 
 .section__pop-up {
-  background-color: #041da5;
+  background-color: lightblue;
   text-align: center;
   border: 2px solid #000000;
 }
@@ -158,8 +164,7 @@ body {
 
 .main--clue-squares {
   position: relative;
-  background-color: dimgrey;
-  opacity: .8;
+  grid-template-rows: repeat(4, 100px);
 }
 
 .input--answer {
@@ -171,24 +176,29 @@ body {
   border: 2px solid #ffffff;
 }
 
-.section__start-screen, .section__pop-up {
+.section__pop-up {
   height: 400px;
   width: 100%;
   position: absolute;
 }
 
 .article__header {
-  text-shadow: 2px 2px #000000;
   position: relative;
   padding-top: 20px;
   padding-bottom: 20px;
+  color: black;
+  background-color: blanchedalmond;
+  opacity: .8;
+  font-size: 30px;
 }
 
 .article__clue {
-  color: #f4a746;
+  color: red;
   font-weight: 800;
-  text-shadow: 3px 3px #000000;
-  
+  text-shadow: 1px 1px white;
+  padding-top: 5px;
+  background-color: #111;
+  opacity: .88;
 }
 
 .article__clue:hover {
@@ -212,7 +222,7 @@ body {
 .input--submit,
 .button--exit,
 .input--submit-final {
-  height: 20px;
+  height: 26px;
   font-size: 16px;
   border-radius: 10px;
   padding: 0 5px;
@@ -220,6 +230,14 @@ body {
   font-weight: 600;
   width: 350px;
   text-transform: uppercase;
+}
+
+/*.input--submit:hover {
+  background-color: thistle;
+}*/
+
+.input--submit-answers:hover {
+  background-color: thistle;
 }
 
 .input--submit-names {

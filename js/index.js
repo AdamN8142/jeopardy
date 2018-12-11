@@ -32,9 +32,9 @@ function instantiateClues() {
 function instantiateRounds() {
   const categories = Object.keys(data.categories);
   randomizeArray(categories);
-  for (let i = 0; i < 2; i++) {
+  for (let i = 1; i <= 2; i++) {
     const roundCategories = categories.splice(0, 4);
-    jeopardy.rounds.push(new Round(roundCategories, i + 1));
+    jeopardy.rounds.push(new Round(roundCategories, i));
   }
   jeopardy.rounds.push(new Round([categories[0]], 1));
   configureRounds();
@@ -48,17 +48,17 @@ function randomizeArray(arr) {
 }
 
 function configureRounds() {
-  jeopardy.rounds.forEach((round, i) => {
-    jeopardy.rounds[i].setClues();
-    jeopardy.rounds[i].randomizeDailyDoubles();
-    jeopardy.rounds[i].setCategoryNames();
+  jeopardy.rounds.forEach(round => {
+    round.setClues();
+    round.randomizeDailyDoubles();
+    round.setCategoryNames();
   });
 }
 
 function checkGameState() {
   domUpdates.highlightPlayer();
   if(jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 1){
-    jeopardy.cluesRemaining = 1;
+    jeopardy.cluesRemaining = 16;
     jeopardy.roundNumber++
     domUpdates.goToRound2();
   } else if (jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 2){

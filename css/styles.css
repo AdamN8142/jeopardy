@@ -9,6 +9,9 @@
 body {
   background-color: lightgray;
   color: #ffffff;
+  background-image: url(../images/vegas.jpg);
+/*  background-repeat: no-repeat;*/
+
 }
 
 .h2 {
@@ -60,6 +63,11 @@ body {
   margin: 25px 100px;
 }
 
+.input--name::placeholder {
+  color: #D3D3D3;
+  filter:opacity(.5);
+}
+
 .button__reset {
   float: right;
 }
@@ -92,6 +100,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 100px 25px;
+  background-color: dimgrey;
+  opacity: .7;
 }
 
 .section__player {
@@ -121,6 +131,8 @@ body {
 
 .main--clue-squares {
   position: relative;
+  background-color: dimgrey;
+  opacity: .8;
 }
 
 .input--answer {
@@ -182,6 +194,7 @@ body {
 
 .input--submit-names {
   height: 36px;
+  width: 440px;
   border-radius: 18px;
   background-color: #2e1d75;
   color: #ffffff;
@@ -196,3 +209,5 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
+

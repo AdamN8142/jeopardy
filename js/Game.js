@@ -5,7 +5,7 @@ class Game {
     this.rounds = [];
     this.allClues = [];
     this.activePlayerIndex = 0;
-    this.cluesRemaining = 1;
+    this.cluesRemaining = 16;
   }
 
   reset() {

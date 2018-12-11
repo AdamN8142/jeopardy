@@ -26,7 +26,7 @@ class Round {
       const categoryClues = jeopardy.allClues.filter(clue => {
         return clue.categoryId === data.categories[category];
       });
-      for (let i = 1; i < 5; i++) {
+      for (let i = 1; i <= 4; i++) {
         const pointValueClues = categoryClues.filter(clue => {
           return clue.pointValue === 100 * i;
         });

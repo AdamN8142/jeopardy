@@ -32,22 +32,30 @@ body {
   font-weight: 800;
   text-align: center;
   padding-bottom: 15px;
-  outline-style: ridge;
+}
+
+.h1__home-screen {
   text-shadow:
     -1px -1px 0 #000,
     4px -1px 0 #000,
     -1px 1px 0 #000,
     4px 1px 0 #000;
-}
+  outline-style: ridge;
+} 
 
 
 .h1__main-screen {
-  margin: 0 0 10px;
-  font-size: 60px;
+  font-size: 90px;
+  text-shadow:
+    -1px -1px 0 lightskyblue,
+    1px -1px 0 lightskyblue,
+    -1px 1px 0 lightskyblue,
+    1px 1px 0 lightskyblue;
 }
 
 .h4 {
   text-align: center;
+  font-size: 25px;
 }
 
 .form {
@@ -57,7 +65,6 @@ body {
   grid-column-gap: 10px;
   width: 500px;
   margin:auto;
-  opacity: .8;
   margin-top: 40px;
 }
 
@@ -80,6 +87,7 @@ body {
   padding: 0 20px;
   margin-bottom: 20px;
   margin-top: 5px;
+  color: white;
 }
 
 .header {
@@ -171,6 +179,9 @@ body {
 
 .article__header {
   text-shadow: 2px 2px #000000;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .article__clue {
@@ -215,10 +226,25 @@ body {
   grid-column: 2/3;
   height: 36px;
   width: 200px;
+  opacity: .8;
   justify-self: center;
   border-radius: 18px;
   color: thistle;
   margin-top: 10px;
+}
+
+.input--submit-names:hover {
+  opacity: 1;
+  color: lightskyblue;
+}
+
+.em {
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
 }
 
 .h4__player-name {

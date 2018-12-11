@@ -141,7 +141,8 @@ const domUpdates = {
   updateCategoriesOnDOM() {
     const currentRound = jeopardy.roundNumber - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
-      $(`.article__cat${i}`).text(category);
+    const currentText = $(`.article__cat${i}`).html();
+    $(`.article__cat${i}`).html(category + currentText)
     });
   },
 

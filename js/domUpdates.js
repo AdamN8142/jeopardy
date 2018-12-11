@@ -25,11 +25,11 @@ const domUpdates = {
     const maxWager = domUpdates.calculateMaxWager(jeopardy.activePlayer);
     let popUp = $('<section class="section__pop-up"></section>');
     popUp.html(`
-      <p class="p--question">
+      <p class="p--wager-prompt">
         Daily Double! Enter a wager between 5 and ${maxWager}!
-        <input type="number" class="input--wager">
-        <input type="submit" value="Submit" class="input--submit input--submit-wager">
       </p>
+      <input type="number" class="input--wager">
+      <input type="submit" value="Submit" class="input--submit input--submit-wager">
     `);
     // $('body').prepend(popUp);
     $('.main--clue-squares').prepend(popUp);
@@ -191,7 +191,7 @@ const domUpdates = {
       if (player.score > 5) {
         popUpHTML += `
           <p>${player.name}, enter a wager between 5 and ${player.score}</p>
-          <input type="number" class="input--wager" data-player="${index}">
+          <input type="number" class="input--final-wager" data-player="${index}">
         `;
         finalPlayerCount++;
       } else {

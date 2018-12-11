@@ -93,7 +93,7 @@ body {
   opacity: 1;
 }
 
-.input--name, .input--wager {
+.input--name, .input--wager, .input--final-wager {
   border: none;
   background-color: lightslategrey;
   width: 400px;
@@ -107,6 +107,13 @@ body {
   color: white;
 }
 
+.input--wager {
+  display: block;
+  margin: auto;
+  margin-top: 75px;
+  margin-bottom: 35px;
+}
+
 .header {
   margin: 25px 100px;
 }
@@ -117,19 +124,26 @@ body {
 }
 
 .button__reset {
-  float: right;
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 15px
 }
 
 .main__section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 25px 100px;
+  margin: 0px 100px 25px;
 }
 
 .article {
   border: 2px solid #000000;
   text-align: center;
   font-size: 70px;
+}
+
+.form--reset {
+  display: grid;
+  justify-content: right;
 }
 
 
@@ -140,6 +154,7 @@ body {
 }
 
 .section__player {
+  margin-top: 35px;
   border: 2px solid black;
   text-align: center;
   height: 80px;
@@ -153,7 +168,8 @@ body {
 }
 
 .section__pop-up {
-  background-color: lightblue;
+  background-color: #111;
+  opacity: .8;
   text-align: center;
   border: 2px solid #000000;
 }
@@ -202,11 +218,17 @@ body {
 }
 
 .article__clue:hover {
-  filter: brightness(1.4);
+  /*filter: brightness(1.4);*/
+  opacity: .67;
 }
 
 .p--question {
   font-size: 24px;
+}
+
+.p--wager-prompt {
+  font-size: 48px;
+  margin-top: 50px;
 }
 
 .p--feedback {
@@ -236,8 +258,13 @@ body {
   background-color: thistle;
 }*/
 
+.input--submit-answers { 
+  background-color: red;
+  color: white;
+}
+
 .input--submit-answers:hover {
-  background-color: thistle;
+  background-color: green;
 }
 
 .input--submit-names {
@@ -251,6 +278,14 @@ body {
   margin-top: 10px;
 }
 
+.button--exit {
+  background-color: red;
+}
+
+.button--exit:hover {
+  background-color: green;
+}
+
 .input--submit-names:hover {
   opacity: 1;
   color: lightskyblue;
@@ -260,9 +295,17 @@ body {
   display: block;
   margin: auto;
   position: absolute;
+  font-size: 20px;
+}
+
+.em-top-right {
   top: 5px;
   right: 5px;
-  font-size: 20px;
+}
+
+.em-bottom {
+  bottom: 5px;
+  left: 5px;
 }
 
 .h4__player-name {

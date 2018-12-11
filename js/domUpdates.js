@@ -5,10 +5,11 @@ const domUpdates = {
   },
 
   presentClue(event) {
-    if (event.target.innerHTML !== '') {
+    const target = $(event.target);
+    if (target.is('.article__clue') && target.html() !== '') {
       jeopardy.cluesRemaining--;
       const roundIndex = jeopardy.roundNumber - 1
-      const id = event.target.id;
+      const id = target[0].id;
       const selectedClue = jeopardy.rounds[roundIndex].clues[parseInt(id)];
       console.log(selectedClue)
       if (selectedClue.dailyDouble === true) {
@@ -16,22 +17,23 @@ const domUpdates = {
       } else {
         domUpdates.showClueScreen(selectedClue);
       }
-      event.target.innerHTML = '';
+      target.html('');
     }
   },
 
   showWagerScreen(clue) {
     const maxWager = domUpdates.calculateMaxWager(jeopardy.activePlayer);
     let popUp = $('<section class="section__pop-up"></section>');
-       console.log(maxWager)
     popUp.html(`
       <p class="p--question">
         Daily Double! Enter a wager between 5 and ${maxWager}!
         <input type="number" class="input--wager">
-        <input type="submit" value="Submit" class="input--submit-wager">
+        <input type="submit" value="Submit" class="input--submit input--submit-wager">
       </p>
     `);
-    $('body').prepend(popUp);
+    // $('body').prepend(popUp);
+    $('.main--clue-squares').prepend(popUp);
+    $('.article__clue').addClass('body--hidden');
     $('.input--submit').disabled = false;
     $('.input--submit-wager').on('click', function() {
       domUpdates.validateWager(maxWager, clue);
@@ -54,6 +56,7 @@ const domUpdates = {
       const userWager = parseInt($('.input--wager').val())
       clue.setPointValue(userWager);
       $('.section__pop-up').remove();
+      $('.article__clue').removeClass('body--hidden');
       domUpdates.showClueScreen(clue);
     }
   },
@@ -68,7 +71,9 @@ const domUpdates = {
         </ul>
       </p>
     `);
-    $('body').prepend(popUp);
+    // $('body').prepend(popUp);
+    $('.main--clue-squares').prepend(popUp);
+    $('.article__clue').addClass('body--hidden');
     $('.input--submit').on('click', function() {
       domUpdates.showClueFeedback(clue, this);
     });
@@ -77,7 +82,7 @@ const domUpdates = {
   generateAnswerButtons(selectedClue) {
     let choices = domUpdates.generateMultipleAnswers(selectedClue);
     choices = choices.map(clue => {
-      return `<li><input type="submit" value="${clue.answer}" class="input--submit"></li>`
+      return `<li class="li"><input type="submit" value="${clue.answer}" class="input--submit"></li>`
     }).join('');
     return choices;
   },
@@ -92,7 +97,11 @@ const domUpdates = {
     })
     randomizeArray(sameCategory);
     randomizeArray(diffCategory);
-    choices.push(... sameCategory.slice(0,4), ...diffCategory.slice(0,3));
+    if (sameCategory.length > 8) {
+      choices.push(... sameCategory.slice(0,7));
+    } else {
+      choices.push(... sameCategory.slice(0,4), ...diffCategory.slice(0,3));
+    }
     randomizeArray(choices);
     return choices;
   },
@@ -113,6 +122,7 @@ const domUpdates = {
     $('.p--question').append($('<button class="button--exit">Go back to main screen</button>'))
     $('.button--exit').on('click', function() {
       $('.section__pop-up').remove();
+      $('.article__clue').removeClass('body--hidden');
       domUpdates.updateScoresOnDOM();
       checkGameState()
     });
@@ -154,7 +164,7 @@ const domUpdates = {
   goToRound2() {
     jeopardy.rounds[1].multiplyPoints();
     domUpdates.updateCategoriesOnDOM();
-    domUpdates.updateRoundNumberOnDOM()
+    domUpdates.updateRoundNumberOnDOM();
     $('.article__clue').each(function(index) {
       if (index < 4) {
         $(this).text(200);
@@ -169,6 +179,7 @@ const domUpdates = {
   },
 
   goToFinalJeopardy() {
+    domUpdates.updateRoundNumberOnDOM();
     let popUp = $('<section class="section__pop-up"></section>');
     let popUpHTML = `
       <h1>Final Jeopardy</h1>
@@ -189,10 +200,12 @@ const domUpdates = {
       }
     });
     popUpHTML += `
-      <input type="submit" value="Submit" class="input--submit-all-wagers">
+      <input type="submit" value="Submit" class="input--submit input--submit-all-wagers">
     `;
     popUp.html(popUpHTML);
-    $('body').prepend(popUp);
+    // $('body').prepend(popUp);
+    $('.main--clue-squares').prepend(popUp);
+    $('.article__clue').addClass('body--hidden');
     $('.input--submit-all-wagers').on('click', function() {
       domUpdates.validateFinalWagers(finalPlayerCount);
     });
@@ -206,6 +219,7 @@ const domUpdates = {
       const wager = parseInt($('.input--wager').eq(i).val());
       if (wager >= 5 && wager <= player.score) {
         player.wager = wager;
+        $('.input--wager').eq(i).prop("disabled",true);
         finalPlayers.push(player);
       }
     }
@@ -214,6 +228,7 @@ const domUpdates = {
     }).length;
     if (finalPlayerCount === validWagerCount) {
       $('.section__pop-up').remove();
+      $('.article__clue').removeClass('body--hidden');
       domUpdates.showFinalClue(finalPlayers);
     }
   },
@@ -229,10 +244,13 @@ const domUpdates = {
         <p class="p--question">
           ${finalClue.question}
         </p>
+        <article class="article--final-choices"></article>
       </section>`);
-    $('body').prepend(popUp);
+    // $('body').prepend(popUp);
+    $('.main--clue-squares').prepend(popUp);
+    $('.article__clue').addClass('body--hidden');
     finalPlayers.forEach((player, index) => {
-      $('.p--question').append(`
+      $('.article--final-choices').append(`
         <article class="article--player-choices">
           ${player.name}, choose your answer:
           <ul class="ul--answer-buttons" data-player="${index}">
@@ -252,29 +270,35 @@ const domUpdates = {
     const index = $(button).closest('.ul--answer-buttons').data().player;
     const userAnswer = $(button).val();
     if (finalClue.validateAnswer(userAnswer)) {
-      finalPlayers[index].finalScore = finalPlayers[index].score + finalPlayers[index].wager;
+      finalPlayers[index].score = finalPlayers[index].score + finalPlayers[index].wager;
+      finalPlayers[index].finishedPlaying = true;
     } else {
-      finalPlayers[index].finalScore = finalPlayers[index].score - finalPlayers[index].wager
+      finalPlayers[index].score = finalPlayers[index].score - finalPlayers[index].wager;
+      finalPlayers[index].finishedPlaying = true;
     }
-    $(button).closest('.ul--answer-buttons').find('.input--submit-final').prop("disabled",true);
-    const finalAnswerCount = finalPlayers.filter(player => {
-      return player.finalScore !== undefined;
+    $(button).closest('.ul--answer-buttons').find('.input--submit-final').prop("disabled", true);
+    const finalAnswerCount = jeopardy.players.filter(player => {
+      return player.finishedPlaying === true;
     }).length;
     if (finalAnswerCount === finalPlayers.length) {
       $('.section__pop-up').remove()
+      $('.article__clue').removeClass('body--hidden');
       domUpdates.goToWinnerScreen(finalPlayers);
     }
   },
 
   goToWinnerScreen(finalPlayers) {
+    domUpdates.updateScoresOnDOM();
     const highestScore = Math.max(...finalPlayers.map((player) => {
-      return player.finalScore;
+      return player.score;
     }));
     const winner = finalPlayers.find(player => {
-      return player.finalScore === highestScore;
+      return player.score === highestScore;
     });
     let popUp = $(`<section class="section__pop-up"></section>`);
-    popUp.html(`<h1>Congratulations ${winner.name}! You won with a score of ${winner.finalScore}</h1>`);
-    $('body').prepend(popUp);
+    popUp.html(`<h1>Congratulations ${winner.name}! You won with a score of ${winner.score}</h1>`);
+    // $('body').prepend(popUp);
+    $('.main--clue-squares').prepend(popUp);
+    $('.article__clue').addClass('body--hidden');
   }
 }

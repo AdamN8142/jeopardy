@@ -3,6 +3,7 @@
   <head>
     <title>Jeopardy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
@@ -11,18 +12,18 @@
       <h2 class="h2">THIS IS</h2>
       <h1 class="h1">JEOPARDY</h1>
       <form class="form">
-        <label for="name-0" class="label">Player 1</label>
-        <input type="text" id="name-0" class="input--name">
-        <label for="name-1" class="label">Player 2</label>
-        <input type="text" id="name-1" class="input--name">
-        <label for="name-2" class="label">Player 3</label>
-        <input type="text" id="name-2" class="input--name">
-        <input type="submit" value="Start" class="input--submit">
+        <label for="name-0" class="label">PLAYER 1</label>
+        <input type="text" id="name-0" class="input--name" placeholder="Enter your name" maxlength="10">
+        <label for="name-1" class="label">PLAYER 2</label>
+        <input type="text" id="name-1" class="input--name" placeholder="Enter your name" maxlength="10">
+        <label for="name-2" class="label">PLAYER 3</label>
+        <input type="text" id="name-2" class="input--name" placeholder="Enter your name" maxlength="10">
+        <input type="submit" value="Start" class="input--submit input--submit-names">
       </form>
     </section>
     <header class="header body--hidden">
-      <h1 class="h1">JEOpardy</h1>
-      <h4 class="h4">round #<span class="span--round"></span></h4>
+      <h1 class="h1 h1__main-screen">JEOpardy</h1>
+      <h4 class="h4">ROUND #<span class="span--round"></span></h4>
       <form>
         <button class="button__reset">Reset Game</button>
       </form>
@@ -54,16 +55,16 @@
       </section>
     </main>
     <footer class="footer body--hidden">
-      <section class="section section__player-0">
-        <h4 class="h4__player-0-name">Player 1</h4>
+      <section class="section__player section__player-0">
+        <h4 class="h4__player-name h4__player-0-name">Player 1</h4>
         Score: <span class="span__player-0-score">0</span>
       </section>
-      <section class="section section__player-1">
-        <h4 class="h4__player-1-name">Player 2</h4>
+      <section class="section__player section__player-1">
+        <h4 class="h4__player-name h4__player-1-name">Player 2</h4>
         Score: <span class="span__player-1-score">0</span>
       </section>
-      <section class="section section__player-2">
-        <h4 class="h4__player-2-name">Player 3</h4>
+      <section class="section__player section__player-2">
+        <h4 class="h4__player-name h4__player-2-name">Player 3</h4>
         Score: <span class="span__player-2-score">0</span>
       </section>
     </footer>

@@ -59,7 +59,7 @@ const data = {
     {
       question: "All your relatives might enjoy this channel abbreviated FAM",
       pointValue: 200,
-      answer: "The Family Channel (The Family Network accepted)",
+      answer: "The Family Channel",
       categoryId: 10
     },
     {
@@ -647,7 +647,7 @@ const data = {
     {
       question: "It's the present-day successor of the old Federal Radio Commission",
       pointValue: 100,
-      answer: "the FCC (Federal Communications Commission)",
+      answer: "the FCC",
       categoryId: 1
     },
     {

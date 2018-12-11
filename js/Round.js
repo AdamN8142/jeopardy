@@ -52,10 +52,10 @@ class Round {
     });
   }
 
-  multiplyPoints() {
+  multiplyPoints(){
     this.clues.forEach(clue => {
-      clue.pointValue *= 2;
-    })
+      clue.pointValue *= 2; 
+    });
   }
 }
 

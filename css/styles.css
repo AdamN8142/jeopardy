@@ -199,18 +199,20 @@ body {
 }
 
 .article__header {
+  display: grid;
+  align-items: center;
   position: relative;
-  padding-top: 20px;
-  padding-bottom: 20px;
   color: black;
   background-color: blanchedalmond;
   opacity: .8;
   font-size: 30px;
+  height: 111px;
 }
 
 .span__cat {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  width: 90%;
+  display: block;
+  margin: auto;
 }
 
 .article__clue {

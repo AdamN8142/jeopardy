@@ -142,7 +142,8 @@ const domUpdates = {
   },
 
   updateRoundNumberOnDOM() {
-    $('.span--round').text(jeopardy.roundNumber);
+    const adjective = jeopardy.roundNumber < 3 ? 'DOUBLE' : 'FINAL';
+    $('.span--round-descriptor').text(adjective);
   },
 
   updateCategoriesOnDOM() {

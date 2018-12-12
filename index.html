@@ -4,36 +4,44 @@
     <title>Jeopardy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
   <body>
     <section class="section__start-screen">
-      <h2 class="h2">THIS IS</h2>
-      <h1 class="h1">JEOPARDY</h1>
+      <h2 class="h2">VEGAS</h2>
+      <h1 class="h1 h1__home-screen">JEOPARDY</h1>
       <form class="form">
-        <label for="name-0" class="label">PLAYER 1</label>
-        <input type="text" id="name-0" class="input--name" placeholder="Enter your name" maxlength="10">
-        <label for="name-1" class="label">PLAYER 2</label>
-        <input type="text" id="name-1" class="input--name" placeholder="Enter your name" maxlength="10">
-        <label for="name-2" class="label">PLAYER 3</label>
-        <input type="text" id="name-2" class="input--name" placeholder="Enter your name" maxlength="10">
+        <div class="div">
+          <label for="name-0" class="label label--1">PLAYER 1</label>
+          <input type="text" id="name-0" class="input--name input--name-1" placeholder="Enter your name" maxlength="10">
+        </div> 
+        <div class="div">
+          <label for="name-1" class="label label--2">PLAYER 2</label>
+          <input type="text" id="name-1" class="input--name input--name-2" placeholder="Enter your name" maxlength="10">
+        </div>
+        <div class="div">
+          <label for="name-2" class="label label--3">PLAYER 3</label>
+          <input type="text" id="name-2" class="input--name input--name-3" placeholder="Enter your name" maxlength="10">
+        </div>  
         <input type="submit" value="Start" class="input--submit input--submit-names">
       </form>
     </section>
+    <section class="section__main-screen body--hidden">
     <header class="header body--hidden">
-      <h1 class="h1 h1__main-screen">JEOpardy</h1>
+      <h1 class="h1 h1__main-screen">VEGAS JEOPARDY</h1>
       <h4 class="h4">ROUND #<span class="span--round"></span></h4>
-      <form>
+      <form class="form--reset">
         <button class="button__reset">Reset Game</button>
       </form>
     </header>
     <main class="main body--hidden">
       <section class="main__section main--categories">
-        <article class="article article__cat0 article__header"></article>
-        <article class="article article__cat1 article__header"></article>
-        <article class="article article__cat2 article__header"></article>
-        <article class="article article__cat3 article__header"></article>
+        <article class="article article__cat0 article__header"><i class="em em-top-right em-clubs"></i><i class="em em-bottom em-clubs"></i></article>
+        <article class="article article__cat1 article__header"><i class="em em-top-right em-hearts"></i><i class="em em-bottom em-hearts"></i></article>
+        <article class="article article__cat2 article__header"><i class="em em-top-right em-spades"></i><i class="em em-bottom em-spades"></i></article>
+        <article class="article article__cat3 article__header"><i class="em em-top-right em-diamonds"></i><i class="em em-bottom em-diamonds"></i></article>
       </section>
       <section class="main__section main--clue-squares">
         <article class="article article__clue" id="0">100</article>
@@ -68,6 +76,7 @@
         Score: <span class="span__player-2-score">0</span>
       </section>
     </footer>
+    </section>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

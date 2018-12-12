@@ -1,5 +1,5 @@
 * {
-  border-style: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -7,79 +7,132 @@
 }
 
 body {
-  background-color: lightgray;
+  background-color: black;
   color: #ffffff;
-  background-image: url(../images/vegas.jpg);
-/*  background-repeat: no-repeat;*/
+}
 
+.section__main-screen {
+  background-image: url(https://www.holidayguru.ie/wp-content/uploads/2016/04/Las-Vegas-Strip-at-night-high-vantage-iStock_000082066557_Large-2.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-position: center;
+}
+
+.section__start-screen {
+  background-image: url(../images/vegas.jpg);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }
 
 .h2 {
-  margin: 40px auto 10px;
-  font-size: 40px;
+  margin: 20px auto 10px;
+  font-size: 60px;
   font-weight: 600;
   text-align: center;
+  color: thistle;
+  text-shadow:
+   -1px -1px 0 #000,
+   2px -1px 0 #000,
+   -1px 1px 0 #000,
+   2px 1px 0 #000;
 }
 
 .h1 {
   margin: 10px auto 20px;
-  font-size: 80px;
+  color: thistle;
+  font-size: 178px;
   font-weight: 800;
   text-align: center;
+  padding-bottom: 15px;
 }
 
+.h1__home-screen {
+  text-shadow:
+    -1px -1px 0 #000,
+    4px -1px 0 #000,
+    -1px 1px 0 #000,
+    4px 1px 0 #000;
+  outline-style: ridge;
+} 
+
+
 .h1__main-screen {
-  margin: 0 0 10px;
-  font-size: 60px;
+  font-size: 90px;
+  color:red;
+  text-shadow:
+    -1px -1px 0 lightskyblue,
+    1px -1px 0 lightskyblue,
+    -1px 1px 0 lightskyblue,
+    1px 1px 0 lightskyblue;
 }
 
 .h4 {
   text-align: center;
+  font-size: 25px;
 }
 
 .form {
   display: grid;
   justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  width: 500px;
+  margin:auto;
+  margin-top: 40px;
 }
 
 .label {
+  color: lightskyblue;
   padding: 0 20px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
+  opacity: 1;
 }
 
-.input--name, .input--wager {
+.input--name, .input--wager, .input--final-wager {
   border: none;
+  background-color: lightslategrey;
   width: 400px;
   height: 40px;
-  font-size: 36px;
+  font-size: 26px;
+  opacity: .65;
   border-radius: 20px;
   padding: 0 20px;
   margin-bottom: 20px;
+  margin-top: 5px;
+  color: white;
+}
+
+.input--wager {
+  display: block;
+  margin: auto;
+  margin-top: 75px;
+  margin-bottom: 35px;
 }
 
 .header {
-  /* text-align: center; */
   margin: 25px 100px;
 }
 
 .input--name::placeholder {
-  color: #D3D3D3;
-  filter:opacity(.5);
+  color: thistle;
+  filter:opacity(.75);
 }
 
 .button__reset {
-  float: right;
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 15px
 }
 
 .main__section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 25px 100px;
-}
-
-.main--clue-squares {
-  grid-template-rows: repeat(4, 100px);
+  margin: 0px 100px 25px;
 }
 
 .article {
@@ -88,31 +141,26 @@ body {
   font-size: 70px;
 }
 
-.article__header {
-  font-size: 30px;
+.form--reset {
+  display: grid;
+  justify-content: right;
 }
 
-.article__clue {
-  padding-top: 5px;
-}
 
 .footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 100px 25px;
-  background-color: dimgrey;
-  opacity: .7;
 }
 
 .section__player {
+  margin-top: 35px;
   border: 2px solid black;
   text-align: center;
   height: 80px;
   font-size: 24px;
-}
-
-.section__start-screen {
-  /* text-align: center; */
+  background-color: #111;
+  opacity: .88;
 }
 
 .body--hidden {
@@ -120,7 +168,8 @@ body {
 }
 
 .section__pop-up {
-  background-color: #041da5;
+  background-color: #111;
+  opacity: .8;
   text-align: center;
   border: 2px solid #000000;
 }
@@ -131,8 +180,7 @@ body {
 
 .main--clue-squares {
   position: relative;
-  background-color: dimgrey;
-  opacity: .8;
+  grid-template-rows: repeat(4, 100px);
 }
 
 .input--answer {
@@ -144,29 +192,43 @@ body {
   border: 2px solid #ffffff;
 }
 
-.section__start-screen, .section__pop-up {
+.section__pop-up {
   height: 400px;
   width: 100%;
   position: absolute;
 }
 
 .article__header {
-  text-shadow: 2px 2px #000000;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: black;
+  background-color: blanchedalmond;
+  opacity: .8;
+  font-size: 30px;
 }
 
 .article__clue {
-  color: #f4a746;
+  color: red;
   font-weight: 800;
-  text-shadow: 3px 3px #000000;
-  
+  text-shadow: 1px 1px white;
+  padding-top: 5px;
+  background-color: #111;
+  opacity: .88;
 }
 
 .article__clue:hover {
-  filter: brightness(1.4);
+  /*filter: brightness(1.4);*/
+  opacity: .67;
 }
 
 .p--question {
   font-size: 24px;
+}
+
+.p--wager-prompt {
+  font-size: 48px;
+  margin-top: 50px;
 }
 
 .p--feedback {
@@ -182,7 +244,7 @@ body {
 .input--submit,
 .button--exit,
 .input--submit-final {
-  height: 20px;
+  height: 26px;
   font-size: 16px;
   border-radius: 10px;
   padding: 0 5px;
@@ -192,12 +254,58 @@ body {
   text-transform: uppercase;
 }
 
+/*.input--submit:hover {
+  background-color: thistle;
+}*/
+
+.input--submit-answers { 
+  background-color: red;
+  color: white;
+}
+
+.input--submit-answers:hover {
+  background-color: green;
+}
+
 .input--submit-names {
+  grid-column: 2/3;
   height: 36px;
-  width: 440px;
+  width: 200px;
+  opacity: .8;
+  justify-self: center;
   border-radius: 18px;
-  background-color: #2e1d75;
-  color: #ffffff;
+  color: thistle;
+  margin-top: 10px;
+}
+
+.button--exit {
+  background-color: red;
+}
+
+.button--exit:hover {
+  background-color: green;
+}
+
+.input--submit-names:hover {
+  opacity: 1;
+  color: lightskyblue;
+}
+
+.em {
+  display: block;
+  margin: auto;
+  position: absolute;
+  font-size: 20px;
+}
+
+.em-top-right {
+  top: 5px;
+  right: 5px;
+}
+
+.em-bottom {
+  bottom: 5px;
+  left: 5px;
 }
 
 .h4__player-name {
@@ -209,5 +317,3 @@ body {
   display: flex;
   justify-content: space-around;
 }
-
-

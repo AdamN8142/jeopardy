@@ -311,7 +311,7 @@ const domUpdates = {
     });
     const html = `
       <h1>Congratulations ${winner.name}!
-        You won with a score of ${winner.score}
+        You won with a score of ${winner.score}!
       </h1>
     `;
     domUpdates.createPopUp(html);

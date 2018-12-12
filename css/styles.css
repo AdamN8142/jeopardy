@@ -189,7 +189,8 @@ body {
   list-style-type: none;
 }
 
-.input--submit-answers:disabled,  .input--submit-answers:disabled:hover {
+.input--submit-answers:disabled,
+.input--submit-answers:disabled:hover {
   background-color: grey;
 }
 
@@ -263,8 +264,9 @@ body {
 }
 
 .input--submit,
-.button--exit,
-.input--submit-final {
+.input--submit-final,
+.input--submit-all-wagers,
+.button--exit {
   height: 26px;
   font-size: 16px;
   border-radius: 10px;
@@ -273,14 +275,14 @@ body {
   font-weight: 600;
   width: 350px;
   text-transform: uppercase;
-}
-
-.input--submit-answers { 
   background-color: red;
   color: white;
 }
 
-.input--submit-answers:hover {
+.input--submit-answers:hover,
+.input--submit-wager:hover,
+.input--submit-all-wagers:hover,
+.button--exit:hover {
   background-color: green;
 }
 
@@ -291,16 +293,9 @@ body {
   opacity: .8;
   justify-self: center;
   border-radius: 18px;
+  background-color: #FFF;
   color: thistle;
   margin-top: 10px;
-}
-
-.button--exit {
-  background-color: red;
-}
-
-.button--exit:hover {
-  background-color: green;
 }
 
 .input--submit-names:hover {
@@ -345,6 +340,7 @@ body {
 }
 
 .input--submit-all-wagers {
+
   display: block;
   margin: auto;
 }

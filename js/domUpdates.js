@@ -141,8 +141,8 @@ const domUpdates = {
   updateCategoriesOnDOM() {
     const currentRound = jeopardy.roundNumber - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
-    const currentText = $(`.article__cat${i}`).html();
-    $(`.article__cat${i}`).html(category + currentText)
+    // const currentText = $(`.article__cat${i}`).text();
+    $(`.span__cat${i}`).html(category)
     });
   },
 
@@ -215,12 +215,12 @@ const domUpdates = {
   validateFinalWagers(finalPlayerCount) {
     const finalPlayers = [];
     for (let i = 0; i < finalPlayerCount; i++) {
-      const index = $('.input--wager').eq(i).data().player;
+      const index = $('.input--final-wager').eq(i).data().player;
       const player = jeopardy.players[index];
-      const wager = parseInt($('.input--wager').eq(i).val());
+      const wager = parseInt($('.input--final-wager').eq(i).val());
       if (wager >= 5 && wager <= player.score) {
         player.wager = wager;
-        $('.input--wager').eq(i).prop("disabled",true);
+        $('.input--final-wager').eq(i).prop("disabled",true);
         finalPlayers.push(player);
       }
     }

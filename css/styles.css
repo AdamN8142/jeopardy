@@ -208,6 +208,11 @@ body {
   font-size: 30px;
 }
 
+.span__cat {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .article__clue {
   color: red;
   font-weight: 800;

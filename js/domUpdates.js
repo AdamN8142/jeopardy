@@ -23,17 +23,15 @@ const domUpdates = {
 
   showWagerScreen(clue) {
     const maxWager = domUpdates.calculateMaxWager(jeopardy.activePlayer);
-    let popUp = $('<section class="section__pop-up"></section>');
-    popUp.html(`
+    const html = `
       <p class="p--wager-prompt">
         Daily Double! Enter a wager between 5 and ${maxWager}!
       </p>
       <input type="number" class="input--wager">
       <input type="submit" value="Submit"
         class="input--submit input--submit-wager">
-    `);
-    $('.main--clue-squares').prepend(popUp);
-    $('.article__clue').addClass('body--hidden');
+    `;
+    domUpdates.createPopUp(html);
     $('.input--submit').disabled = false;
     $('.input--submit-wager').on('click', function() {
       domUpdates.validateWager(maxWager, clue);
@@ -62,17 +60,15 @@ const domUpdates = {
   },
 
   showClueScreen(clue) {
-    let popUp = $('<section class="section__pop-up"></section>');
-    popUp.html(`
+    const html = `
       <p class="p--question">
         ${clue.question}
         <ul class="ul--answer-buttons">
-        ${domUpdates.generateAnswerButtons(clue)}
+          ${domUpdates.generateAnswerButtons(clue)}
         </ul>
       </p>
-    `);
-    $('.main--clue-squares').prepend(popUp);
-    $('.article__clue').addClass('body--hidden');
+    `;
+    domUpdates.createPopUp(html);
     $('.input--submit').on('click', function() {
       domUpdates.showClueFeedback(clue, this);
     });
@@ -188,22 +184,21 @@ const domUpdates = {
 
   goToFinalJeopardy() {
     domUpdates.updateRoundNumberOnDOM();
-    let popUp = $('<section class="section__pop-up"></section>');
-    let popUpHTML = `
+    let html = `
       <h1>Final Jeopardy</h1>
       <p>Category: ${jeopardy.rounds[2].categories[0]}</p>
     `;
     let finalPlayerCount = 0;
     jeopardy.players.forEach((player, index) => {
       if (player.score > 5) {
-        popUpHTML += `
+        html += `
           <p>${player.name}, enter a wager between 5 and ${player.score}</p>
           <input type="number"
             class="input--final-wager" data-player="${index}">
         `;
         finalPlayerCount++;
       } else {
-        popUpHTML += `
+        html += `
           <p>
             Sorry ${player.name}.
             You do not have enough points to play Final Jeopardy.
@@ -211,14 +206,11 @@ const domUpdates = {
         `;
       }
     });
-    popUpHTML += `
+    html += `
       <input type="submit" value="Submit"
         class="input--submit input--submit-all-wagers">
     `;
-    popUp.html(popUpHTML);
-    // $('body').prepend(popUp);
-    $('.main--clue-squares').prepend(popUp);
-    $('.article__clue').addClass('body--hidden');
+    domUpdates.createPopUp(html);
     $('.input--submit-all-wagers').on('click', function() {
       domUpdates.validateFinalWagers(finalPlayerCount);
     });
@@ -252,15 +244,13 @@ const domUpdates = {
     });
     console.log(finalClue);
     const finalAnswerButtons = domUpdates.generateAnswerButtons(finalClue);
-    let popUp = $(`
-      <section class="section__pop-up">
-        <p class="p--question">
-          ${finalClue.question}
-        </p>
-        <article class="article--final-choices"></article>
-      </section>`);
-    $('.main--clue-squares').prepend(popUp);
-    $('.article__clue').addClass('body--hidden');
+    const html = `
+      <p class="p--question">
+       ${finalClue.question}
+      </p>
+      <article class="article--final-choices"></article>
+    `;
+    domUpdates.createPopUp(html);
     finalPlayers.forEach((player, index) => {
       $('.article--final-choices').append(`
         <article class="article--player-choices">
@@ -308,12 +298,17 @@ const domUpdates = {
     const winner = finalPlayers.find(player => {
       return player.score === highestScore;
     });
-    let popUp = $(`<section class="section__pop-up"></section>`);
-    popUp.html(`
+    const html = `
       <h1>Congratulations ${winner.name}!
         You won with a score of ${winner.score}
       </h1>
-    `);
+    `;
+    domUpdates.createPopUp(html);
+  },
+
+  createPopUp(text) {
+    const popUp = $('<section class="section__pop-up"></section>');
+    popUp.html(text);
     $('.main--clue-squares').prepend(popUp);
     $('.article__clue').addClass('body--hidden');
   }

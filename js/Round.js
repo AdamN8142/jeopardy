@@ -10,13 +10,17 @@ class Round {
       let index = Math.floor(Math.random() * this.clues.length);
       if (i === 0) {
         const { question, answer, pointValue, categoryId } = this.clues[index];
-        this.clues[index] = new DailyDouble(question, answer, pointValue, categoryId);
+        this.clues[index] = new DailyDouble(
+          question, answer, pointValue, categoryId
+        );
       } else {
         while (this.clues[index].dailyDouble === true) {
           index = Math.floor(Math.random() * this.clues.length);
         }
         const { question, answer, pointValue, categoryId } = this.clues[index];
-        this.clues[index] = new DailyDouble(question, answer, pointValue, categoryId);
+        this.clues[index] = new DailyDouble(
+          question, answer, pointValue, categoryId
+        );
       }
     }
   }

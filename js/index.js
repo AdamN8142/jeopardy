@@ -57,11 +57,11 @@ function configureRounds() {
 
 function checkGameState() {
   domUpdates.highlightPlayer();
-  if(jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 1){
+  if (jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 1) {
     jeopardy.cluesRemaining = 16;
     jeopardy.roundNumber++
     domUpdates.goToRound2();
-  } else if (jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 2){
+  } else if (jeopardy.cluesRemaining === 0 && jeopardy.roundNumber === 2) {
     jeopardy.cluesRemaining = 1;
     jeopardy.roundNumber++;
     domUpdates.goToFinalJeopardy();

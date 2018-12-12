@@ -8,10 +8,10 @@ const domUpdates = {
     const target = $(event.target);
     if (target.is('.article__clue') && target.html() !== '') {
       jeopardy.cluesRemaining--;
-      const roundIndex = jeopardy.roundNumber - 1
+      const roundIndex = jeopardy.roundNumber - 1;
       const id = target[0].id;
       const selectedClue = jeopardy.rounds[roundIndex].clues[parseInt(id)];
-      console.log(selectedClue)
+      console.log(selectedClue);
       if (selectedClue.dailyDouble === true) {
         domUpdates.showWagerScreen(selectedClue);
       } else {
@@ -29,9 +29,9 @@ const domUpdates = {
         Daily Double! Enter a wager between 5 and ${maxWager}!
       </p>
       <input type="number" class="input--wager">
-      <input type="submit" value="Submit" class="input--submit input--submit-wager">
+      <input type="submit" value="Submit"
+        class="input--submit input--submit-wager">
     `);
-    // $('body').prepend(popUp);
     $('.main--clue-squares').prepend(popUp);
     $('.article__clue').addClass('body--hidden');
     $('.input--submit').disabled = false;
@@ -51,8 +51,8 @@ const domUpdates = {
     return Math.max(player.score, maxPointValue);
   },
 
-  validateWager(maxWager, clue){
-    if($('.input--wager').val() >= 5 && $('.input--wager').val() <= maxWager){
+  validateWager(maxWager, clue) {
+    if ($('.input--wager').val() >= 5 && $('.input--wager').val() <= maxWager) {
       const userWager = parseInt($('.input--wager').val())
       clue.setPointValue(userWager);
       $('.section__pop-up').remove();
@@ -71,7 +71,6 @@ const domUpdates = {
         </ul>
       </p>
     `);
-    // $('body').prepend(popUp);
     $('.main--clue-squares').prepend(popUp);
     $('.article__clue').addClass('body--hidden');
     $('.input--submit').on('click', function() {
@@ -82,31 +81,37 @@ const domUpdates = {
   generateAnswerButtons(selectedClue) {
     let choices = domUpdates.generateMultipleAnswers(selectedClue);
     choices = choices.map(clue => {
-      return `<li class="li"><input type="submit" value="${clue.answer}" class="input--submit input--submit-answers"></li>`
+      return `
+        <li class="li">
+          <input type="submit" value="${clue.answer}"
+            class="input--submit input--submit-answers">
+        </li>
+      `;
     }).join('');
     return choices;
   },
 
-  generateMultipleAnswers(selectedClue){
+  generateMultipleAnswers(selectedClue) {
     let choices = [selectedClue];
     const sameCategory = jeopardy.allClues.filter(clue => {
-      return clue.categoryId === selectedClue.categoryId && clue.answer !== selectedClue.answer;
-    })
+      return (clue.categoryId === selectedClue.categoryId
+        && clue.answer !== selectedClue.answer);
+    });
     const diffCategory = jeopardy.allClues.filter(clue => {
-      return clue.categoryId !== selectedClue.categoryId;;
-    })
+      return clue.categoryId !== selectedClue.categoryId;
+    });
     randomizeArray(sameCategory);
     randomizeArray(diffCategory);
     if (sameCategory.length > 8) {
-      choices.push(... sameCategory.slice(0,7));
+      choices.push(...sameCategory.slice(0, 7));
     } else {
-      choices.push(... sameCategory.slice(0,4), ...diffCategory.slice(0,3));
+      choices.push(...sameCategory.slice(0, 4), ...diffCategory.slice(0, 3));
     }
     randomizeArray(choices);
     return choices;
   },
 
-  showClueFeedback(clue, button){
+  showClueFeedback(clue, button) {
     $('.ul--answer-buttons').remove();
     let userAnswer = button.value;
     let feedback;
@@ -119,12 +124,14 @@ const domUpdates = {
       jeopardy.changeActivePlayer();
     }
     $('.p--question').append(feedback);
-    $('.p--question').append($('<button class="button--exit">Go back to main screen</button>'))
+    $('.p--question').append(
+      $('<button class="button--exit">Go back to main screen</button>')
+    );
     $('.button--exit').on('click', function() {
       $('.section__pop-up').remove();
       $('.article__clue').removeClass('body--hidden');
       domUpdates.updateScoresOnDOM();
-      checkGameState()
+      checkGameState();
     });
   },
 
@@ -141,8 +148,7 @@ const domUpdates = {
   updateCategoriesOnDOM() {
     const currentRound = jeopardy.roundNumber - 1;
     jeopardy.rounds[currentRound].categories.forEach((category, i) => {
-    // const currentText = $(`.article__cat${i}`).text();
-    $(`.span__cat${i}`).html(category)
+      $(`.span__cat${i}`).html(category);
     });
   },
 
@@ -152,13 +158,13 @@ const domUpdates = {
     });   
   },
 
-  highlightPlayer(player) {
+  highlightPlayer() {
     jeopardy.players.forEach((player, index) => {
       if  (player.isActivePlayer === true) {
-        $(`.section__player-${index}`).addClass('section--highlighted')
+        $(`.section__player-${index}`).addClass('section--highlighted');
       } else {
-        $(`.section__player-${index}`).removeClass('section--highlighted')
-      };
+        $(`.section__player-${index}`).removeClass('section--highlighted');
+      }
     })    
   },
 
@@ -191,17 +197,22 @@ const domUpdates = {
       if (player.score > 5) {
         popUpHTML += `
           <p>${player.name}, enter a wager between 5 and ${player.score}</p>
-          <input type="number" class="input--final-wager" data-player="${index}">
+          <input type="number"
+            class="input--final-wager" data-player="${index}">
         `;
         finalPlayerCount++;
       } else {
         popUpHTML += `
-          <p>Sorry ${player.name}. You do not have enough points to play Final Jeopardy.</p>
+          <p>
+            Sorry ${player.name}.
+            You do not have enough points to play Final Jeopardy.
+          </p>
         `;
       }
     });
     popUpHTML += `
-      <input type="submit" value="Submit" class="input--submit input--submit-all-wagers">
+      <input type="submit" value="Submit"
+        class="input--submit input--submit-all-wagers">
     `;
     popUp.html(popUpHTML);
     // $('body').prepend(popUp);
@@ -220,7 +231,7 @@ const domUpdates = {
       const wager = parseInt($('.input--final-wager').eq(i).val());
       if (wager >= 5 && wager <= player.score) {
         player.wager = wager;
-        $('.input--final-wager').eq(i).prop("disabled",true);
+        $('.input--final-wager').eq(i).prop("disabled", true);
         finalPlayers.push(player);
       }
     }
@@ -247,7 +258,6 @@ const domUpdates = {
         </p>
         <article class="article--final-choices"></article>
       </section>`);
-    // $('body').prepend(popUp);
     $('.main--clue-squares').prepend(popUp);
     $('.article__clue').addClass('body--hidden');
     finalPlayers.forEach((player, index) => {
@@ -271,18 +281,19 @@ const domUpdates = {
     const index = $(button).closest('.ul--answer-buttons').data().player;
     const userAnswer = $(button).val();
     if (finalClue.validateAnswer(userAnswer)) {
-      finalPlayers[index].score = finalPlayers[index].score + finalPlayers[index].wager;
+      finalPlayers[index].score += finalPlayers[index].wager;
       finalPlayers[index].finishedPlaying = true;
     } else {
-      finalPlayers[index].score = finalPlayers[index].score - finalPlayers[index].wager;
+      finalPlayers[index].score -= finalPlayers[index].wager;
       finalPlayers[index].finishedPlaying = true;
     }
-    $(button).closest('.ul--answer-buttons').find('.input--submit-final').prop("disabled", true);
+    $(button).closest('.ul--answer-buttons')
+      .find('.input--submit-final').prop("disabled", true);
     const finalAnswerCount = jeopardy.players.filter(player => {
       return player.finishedPlaying === true;
     }).length;
     if (finalAnswerCount === finalPlayers.length) {
-      $('.section__pop-up').remove()
+      $('.section__pop-up').remove();
       $('.article__clue').removeClass('body--hidden');
       domUpdates.goToWinnerScreen(finalPlayers);
     }
@@ -297,8 +308,11 @@ const domUpdates = {
       return player.score === highestScore;
     });
     let popUp = $(`<section class="section__pop-up"></section>`);
-    popUp.html(`<h1>Congratulations ${winner.name}! You won with a score of ${winner.score}</h1>`);
-    // $('body').prepend(popUp);
+    popUp.html(`
+      <h1>Congratulations ${winner.name}!
+        You won with a score of ${winner.score}
+      </h1>
+    `);
     $('.main--clue-squares').prepend(popUp);
     $('.article__clue').addClass('body--hidden');
   }

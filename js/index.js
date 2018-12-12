@@ -24,7 +24,7 @@ function instantiatePlayers() {
 function instantiateClues() {
   data.clues.forEach(clue => {
     const { question, answer, pointValue, categoryId } = clue;
-    jeopardy.allClues.push(new Clue(question, answer, pointValue, categoryId));
+    game.allClues.push(new Clue(question, answer, pointValue, categoryId));
   });
 }
 
@@ -48,7 +48,7 @@ function randomizeArray(arr) {
 
 function configureRounds() {
   jeopardy.rounds.forEach(round => {
-    round.setClues();
+    round.setClues(jeopardy);
     round.randomizeDailyDoubles();
     round.setCategoryNames();
   });
@@ -65,9 +65,4 @@ function checkGameState() {
     jeopardy.roundNumber++;
     domUpdates.goToFinalJeopardy();
   }
-}
-
-
-if (typeof module !== 'undefined') {
-  module.exports = jeopardy;
 }

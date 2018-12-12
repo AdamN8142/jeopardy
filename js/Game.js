@@ -8,10 +8,6 @@ class Game {
     this.cluesRemaining = 16;
   }
 
-  reset() {
-
-  }
-
   changeActivePlayer() {
     if (this.activePlayerIndex < 2) {
       this.activePlayerIndex++;

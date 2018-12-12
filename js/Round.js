@@ -25,9 +25,9 @@ class Round {
     }
   }
 
-  setClues() {
+  setClues(game) {
     this.categories.forEach(category => {
-      const categoryClues = jeopardy.allClues.filter(clue => {
+      const categoryClues = game.allClues.filter(clue => {
         return clue.categoryId === data.categories[category];
       });
       for (let i = 1; i <= 4; i++) {

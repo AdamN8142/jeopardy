@@ -184,24 +184,24 @@ const domUpdates = {
 
   goToFinalJeopardy() {
     domUpdates.updateRoundNumberOnDOM();
-    let html = `
-      <h1>Final Jeopardy</h1>
-      <p>Category: ${jeopardy.rounds[2].categories[0]}</p>
-    `;
+    domUpdates.showFinalCategory();
+    let html = '';
     let finalPlayerCount = 0;
     jeopardy.players.forEach((player, index) => {
       if (player.score > 5) {
         html += `
-          <p>${player.name}, enter a wager between 5 and ${player.score}</p>
+          <p class="p--final-wager-prompt">
+            ${player.name}, enter a wager between 5 and ${player.score}
+          </p>
           <input type="number"
             class="input--final-wager" data-player="${index}">
         `;
         finalPlayerCount++;
       } else {
         html += `
-          <p>
-            Sorry ${player.name}.
-            You do not have enough points to play Final Jeopardy.
+          <p class="p--final-wager-prompt">
+            Sorry ${player.name},
+            you do not have enough points to play Final Jeopardy.
           </p>
         `;
       }
@@ -214,6 +214,17 @@ const domUpdates = {
     $('.input--submit-all-wagers').on('click', function() {
       domUpdates.validateFinalWagers(finalPlayerCount);
     });
+  },
+
+  showFinalCategory() {
+    $('.main__section').eq(0).addClass('main__section-single-col');
+    $('.main__section').eq(0).removeClass('main__section');
+    $('.article__header').remove();
+    $('.main__section-single-col').append(`
+      <article class="article article__cat-final article__header">
+      ${jeopardy.rounds[2].categories[0]}
+      </article>
+    `);
   },
 
   validateFinalWagers(finalPlayerCount) {

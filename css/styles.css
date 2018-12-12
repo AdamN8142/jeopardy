@@ -141,6 +141,12 @@ body {
   margin: 0px 100px;
 }
 
+.main__section-single-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0px 100px;
+}
+
 .article {
   border: 2px solid #000000;
   text-align: center;
@@ -181,6 +187,10 @@ body {
 
 .ul--answer-buttons {
   list-style-type: none;
+}
+
+.input--submit-answers:disabled,  .input--submit-answers:disabled:hover {
+  background-color: grey;
 }
 
 .main--clue-squares {
@@ -323,4 +333,18 @@ body {
 .article--final-choices {
   display: flex;
   justify-content: space-around;
+}
+
+.article__cat-final {
+  font-size: 40px;
+}
+
+.p--final-wager-prompt {
+  font-size: 24px;
+  margin: 12px 0 20px;
+}
+
+.input--submit-all-wagers {
+  display: block;
+  margin: auto;
 }

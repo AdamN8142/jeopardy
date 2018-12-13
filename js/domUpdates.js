@@ -127,7 +127,7 @@ const domUpdates = {
       $('.section__pop-up').remove();
       $('.article__clue').removeClass('body--hidden');
       domUpdates.updateScoresOnDOM();
-      checkGameState();
+      jeopardy.checkGameState();
     });
   },
 

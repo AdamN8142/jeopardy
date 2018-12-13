@@ -16,4 +16,3 @@ describe('Player', function() {
     expect(player.score).to.equal(100);
   });
 });
-

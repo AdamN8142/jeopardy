@@ -19,5 +19,3 @@ describe('DailyDouble', function() {
     expect(dailyDouble.pointValue).to.equal(1000);
   })
 });
-
-

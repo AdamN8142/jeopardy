@@ -9,6 +9,7 @@
 
 ## Installation Instructions
 `git clone git@github.com:dForDeveloper/jeopardy.git`
+
 `npm install`
 
 ## Gameplay

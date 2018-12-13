@@ -12,6 +12,7 @@ class Game {
     this.instantiatePlayers(names);
     this.instantiateClues();
     this.instantiateRounds();
+    this.configureRounds();
     this.checkGameState();
     domUpdates.removeStartScreen();
     domUpdates.updatePlayerNamesOnDOM();
@@ -40,7 +41,6 @@ class Game {
       this.rounds.push(new Round(roundCategories, i));
     }
     this.rounds.push(new Round([categories[0]], 1));
-    this.configureRounds();
   }
 
   changeActivePlayer() {

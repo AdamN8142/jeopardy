@@ -4,15 +4,16 @@
 
 ### The goal of this project was to recreate the hit game show, Jeopardy! It is designed for three players and features two full rounds and Final Jeopardy.
 
-![screenshot of home screen](images/HomeScreen.png)
-![screenshot of main screen](images/MainScreen.png)
-
 ## Installation Instructions
 `cd` into a directory of your choice
 
 `git clone git@github.com:dForDeveloper/jeopardy.git`
 
 `npm install`
+
+
+![screenshot of home screen](images/HomeScreen.png)
+![screenshot of main screen](images/MainScreen.png)
 
 ## Gameplay
 

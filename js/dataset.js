@@ -21,7 +21,7 @@ const data = {
   },
   clues: [
     {
-      question: "Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
+      question: "\"Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
       pointValue: 100,
       answer: "golf",
       categoryId: 10
@@ -33,13 +33,13 @@ const data = {
       categoryId: 10
     },
     {
-      question: "The Eulogy\" is HBO's e-mail newsletter devoted to this series",
+      question: "\"The Eulogy\" is HBO's e-mail newsletter devoted to this series",
       pointValue: 300,
       answer: "Six Feet Under",
       categoryId: 10
     },
     {
-      question: "(Hi, I'm Billy Ray Cyrus.)  In 2001 I began practicing medicine in the Big Apple on this Pax TV drama",
+      question: "Hi, I'm Billy Ray Cyrus.  In 2001 I began practicing medicine in the Big Apple on this Pax TV drama",
       pointValue: 400,
       answer: "Doc",
       categoryId: 10
@@ -87,7 +87,7 @@ const data = {
       categoryId: 10
     },
     {
-      question: "Cable channel where you'd find \"Mouseterpiece Theatre",
+      question: "Cable channel where you'd find \"Mouseterpiece Theatre\"",
       pointValue: 200,
       answer: "the Disney Channel",
       categoryId: 10
@@ -105,7 +105,7 @@ const data = {
       categoryId: 10
     },
     {
-      question: "Actress who started the \"Faerie Tale Theatre",
+      question: "Actress who started the \"Faerie Tale Theatre\"",
       pointValue: 400,
       answer: "Shelley Duvall",
       categoryId: 10
@@ -201,7 +201,7 @@ const data = {
       categoryId: 9
     },
     {
-      question: "About this city's 1906 earthquake, Jack London wrote, \"Day was trying to dawn through the smoke pall",
+      question: "About this city's 1906 earthquake, Jack London wrote, \"Day was trying to dawn through the smoke pall\"",
       pointValue: 100,
       answer: "San Francisco",
       categoryId: 8
@@ -213,7 +213,7 @@ const data = {
       categoryId: 8
     },
     {
-      question: "This city on Lake Michigan is \"The Beer Capital of America",
+      question: "This city on Lake Michigan is \"The Beer Capital of America\"",
       pointValue: 300,
       answer: "Milwaukee",
       categoryId: 8
@@ -231,7 +231,7 @@ const data = {
       categoryId: 8
     },
     {
-      question: "Earthquake City\" & \"Baghdad by the Bay\" are 2 nicknames of this California city",
+      question: "\"Earthquake City\" & \"Baghdad by the Bay\" are 2 nicknames of this California city",
       pointValue: 100,
       answer: "San Francisco",
       categoryId: 8
@@ -249,7 +249,7 @@ const data = {
       categoryId: 8
     },
     {
-      question: "Cross and Sword\", Florida's official state play, was created to reenact this city's founding in 1565",
+      question: "\"Cross and Sword\", Florida's official state play, was created to reenact this city's founding in 1565",
       pointValue: 400,
       answer: "St. Augustine",
       categoryId: 8
@@ -291,7 +291,7 @@ const data = {
       categoryId: 8
     },
     {
-      question: "Title of Sylvia Nasar's tale of \"The Life of Mathematical Genius and Nobel Laureate John Nash",
+      question: "Title of Sylvia Nasar's tale of \"The Life of Mathematical Genius and Nobel Laureate John Nash\"",
       pointValue: 100,
       answer: "A Beautiful Mind",
       categoryId: 7
@@ -333,19 +333,19 @@ const data = {
       categoryId: 7
     },
     {
-      question: "Uncertainty: The Life and Science of\" this man explores his work on Nazi weapons programs",
+      question: "\"Uncertainty: The Life and Science of\" this man explores his work on Nazi weapons programs",
       pointValue: 300,
-      answer: "(Werner) Heisenberg",
+      answer: "Werner Heisenberg",
       categoryId: 7
     },
     {
-      question: "A biography of this wife of James Joyce is subtitled \"The Real Life of Molly Bloom",
+      question: "A biography of this wife of James Joyce is subtitled \"The Real Life of Molly Bloom\"",
       pointValue: 400,
       answer: "Nora Joyce",
       categoryId: 7
     },
     {
-      question: "This late-night talk show host titled his memoir \"Leading With My Chin",
+      question: "This late-night talk show host titled his memoir \"Leading With My Chin\"",
       pointValue: 400,
       answer: "Jay Leno",
       categoryId: 7
@@ -357,7 +357,7 @@ const data = {
       categoryId: 7
     },
     {
-      question: "A 1928 biography on this religious figure was titled \"Gotama The Man",
+      question: "A 1928 biography on this religious figure was titled \"Gotama The Man\"",
       pointValue: 200,
       answer: "Buddha",
       categoryId: 7
@@ -405,7 +405,7 @@ const data = {
       categoryId: 6
     },
     {
-      question: "The Scarlet Letter\" says, \"to forbid the culprit to hide his face... was the essence of\" this 7-letter punishment",
+      question: "\"The Scarlet Letter\" says, \"to forbid the culprit to hide his face... was the essence of\" this 7-letter punishment",
       pointValue: 100,
       answer: "the pillory",
       categoryId: 6
@@ -423,7 +423,7 @@ const data = {
       categoryId: 6
     },
     {
-      question: "This 1854 Thoreau work is subtitled \"Or Life in the Woods",
+      question: "This 1854 Thoreau work is subtitled \"Or Life in the Woods\"",
       pointValue: 400,
       answer: "Walden",
       categoryId: 6
@@ -435,7 +435,7 @@ const data = {
       categoryId: 6
     },
     {
-      question: "Sons\", the second novel in her \"House of Earth\" trilogy, traces the lives of Wang Lung's 3 sons",
+      question: "\"Sons\", the second novel in her \"House of Earth\" trilogy, traces the lives of Wang Lung's 3 sons",
       pointValue: 100,
       answer: "Pearl S. Buck",
       categoryId: 6
@@ -443,17 +443,17 @@ const data = {
     {
       question: "He penned a campaign biography for Franklin Pierce and pinned \"The Scarlet Letter\" on Hester Prynne",
       pointValue: 200,
-      answer: "(Nathaniel) Hawthorne",
+      answer: "Nathaniel Hawthorne",
       categoryId: 6
     },
     {
-      question: "His experiences as a bombardier in WWII were the basis of the novel \"Catch-22",
+      question: "His experiences as a bombardier in WWII were the basis of the novel \"Catch-22\"",
       pointValue: 300,
       answer: "Joseph Heller",
       categoryId: 6
     },
     {
-      question: "Little Women\" is set during this war",
+      question: "\"Little Women\" is set during this war",
       pointValue: 400,
       answer: "the Civil War",
       categoryId: 6
@@ -537,7 +537,7 @@ const data = {
       categoryId: 3
     },
     {
-      question: '(<a href="http://www.j-archive.com/media/2005-12-21_J_25.jpg" target="_blank">Hi!  I\'m CNN senior medical correspondent Dr. Sanjay Gupta.</a>)  I joined CNN in 2001 & reported on the biological attacks of this bacillus in the news that October',
+      question: 'Hi!  I\'m CNN senior medical correspondent Dr. Sanjay Gupta. I joined CNN in 2001 & reported on the biological attacks of this bacillus in the news that October',
       answer: 'anthrax',
       pointValue: 300,
       categoryId: 3
@@ -550,7 +550,7 @@ const data = {
     },
     {
       question: 'Also a type of mathematical quantity, it\'s a term for disease-carrying critters like ticks',
-      answer: 'a vector',
+      answer: 'vector',
       pointValue: 400,
       categoryId: 3
     },
@@ -573,7 +573,7 @@ const data = {
       categoryId: 2
     },
     {
-      question: '(<a href="http://www.j-archive.com/media/2009-04-28_DJ_22.wmv">Jimmy of the Clue Crew gets in his workout.</a>)  Physical activity increases both body temperature & this process in which food is converted to protein, carbs & fat & then used for energy',
+      question: 'Jimmy of the Clue Crew gets in his workout. Physical activity increases both body temperature & this process in which food is converted to protein, carbs & fat & then used for energy',
       answer: 'metabolism',
       pointValue: 400,
       categoryId: 2
@@ -663,19 +663,19 @@ const data = {
       categoryId: 1
     },
     {
-      question: "The Liberty Bell cracked July 8, 1835 while tolling this Chief Justice's death",
+      question: "The Liberty Bell cracked July 8, 1835 while tolling this Chief Justice's death\"",
       pointValue: 400,
-      answer: "(John) Marshall",
+      answer: "John Marshall",
       categoryId: 1
     },
     {
-      question: "The verdict in the 1982 trial of John Hinckley Jr. for attempting to murder the president",
+      question: "The verdict in the 1982 trial of John Hinckley Jr. for attempting to murder the president\"",
       pointValue: 400,
       answer: "not guilty by reason of insanity",
       categoryId: 1
     },
     {
-      question: "In 1787 Patrick Henry refused to go to this convention; it's said that he \"smelt a rat",
+      question: "In 1787 Patrick Henry refused to go to this convention; it's said that he \"smelt a rat\"",
       pointValue: 100,
       answer: "the Constitutional Convention",
       categoryId: 1

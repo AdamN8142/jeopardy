@@ -11,7 +11,6 @@ const domUpdates = {
       const roundIndex = jeopardy.roundNumber - 1;
       const id = target[0].id;
       const selectedClue = jeopardy.rounds[roundIndex].clues[parseInt(id)];
-      console.log(selectedClue);
       if (selectedClue.dailyDouble === true) {
         domUpdates.showWagerScreen(selectedClue);
       } else {
@@ -253,7 +252,6 @@ const domUpdates = {
     const finalClue = jeopardy.rounds[2].clues.find(clue => {
       return clue.dailyDouble === true;
     });
-    console.log(finalClue);
     const finalAnswerButtons = domUpdates.generateAnswerButtons(finalClue);
     const html = `
       <p class="p--question">

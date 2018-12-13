@@ -11,7 +11,12 @@ describe('Round', function() {
   var round;
 
   beforeEach(function() {
-    round = new Round(['unitedStatesHistory', 'lifeSciences', 'publicHealth', 'educationJargon'], 1);
+    round = new Round([
+      'unitedStatesHistory',
+      'lifeSciences',
+      'publicHealth',
+      'educationJargon'
+    ], 1);
     const game = new Game();
     data.clues.forEach(clue => {
       const { question, answer, pointValue, categoryId } = clue;

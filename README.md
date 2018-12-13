@@ -1,6 +1,6 @@
 # Jeopardy
 
-[Play here!] (https://dfordeveloper.github.io/jeopardy/)
+[Play here!](https://dfordeveloper.github.io/jeopardy/)
 
 ### The goal of this project was to recreate the hit game show, Jeopardy! It is designed for three players and features two full rounds and Final Jeopardy.
 

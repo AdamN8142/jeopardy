@@ -1,13 +1,30 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Game = require('../js/Game.js');
-const Player = require('../js/Player.js');
+global.Player = require('../js/Player.js');
+global.Round = require('../js/Round.js');
+global.data = require('../js/dataset.js');
+global.domUpdates = require('../js/domUpdates.js');
+const spies = require('chai-spies');
+chai.use(spies);
 
 describe('Game', function() {
   var game;
   
   beforeEach(function() {
     game = new Game();
+    chai.spy.on(global.domUpdates, [
+      'removeStartScreen',
+      'updatePlayerNamesOnDOM',
+      'updateCategoriesOnDOM',
+      'highlightPlayer',
+      'goToRound2',
+      'goToFinalJeopardy',
+    ], () => true);
+  });
+
+  afterEach(function() {
+    chai.spy.restore(global.domUpdates);
   });
   
   it('should instantiate a new Game', function() {
@@ -17,6 +34,14 @@ describe('Game', function() {
     expect(game.allClues.length).to.equal(0);
     expect(game.activePlayerIndex).to.equal(0);
     expect(game.cluesRemaining).to.equal(16);
+  });
+
+  it('should be able to start a game', function() {
+    game.startGame(['Brittany', 'Pam', 'Robbie']);
+    expect(domUpdates.highlightPlayer).to.have.been.called(1);
+    expect(domUpdates.removeStartScreen).to.have.been.called(1);
+    expect(domUpdates.updatePlayerNamesOnDOM).to.have.been.called(1);
+    expect(domUpdates.updateCategoriesOnDOM).to.have.been.called(1);
   });
 
   it('should be able to add players', function() {

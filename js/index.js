@@ -1,11 +1,13 @@
 const jeopardy = new Game();
 
-$('.input--submit').on('click', jeopardy.startGame);
-$('.main--clue-squares').on('click', domUpdates.presentClue);
+$('.input--submit').on('click', (event) => {
+  event.preventDefault()
+  const playersNames = [
+    $('#name-0').val(),
+    $('#name-1').val(),
+    $('#name-2').val()
+  ];
+  jeopardy.startGame(playersNames);
+});
 
-function randomizeArray(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    const randomIndex = Math.floor((Math.random() * (arr.length - i))) + i;
-    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
-  }
-}
+$('.main--clue-squares').on('click', domUpdates.presentClue);

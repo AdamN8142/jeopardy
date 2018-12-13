@@ -96,14 +96,14 @@ const domUpdates = {
     const diffCategory = jeopardy.allClues.filter(clue => {
       return clue.categoryId !== selectedClue.categoryId;
     });
-    randomizeArray(sameCategory);
-    randomizeArray(diffCategory);
+    jeopardy.randomizeArray(sameCategory);
+    jeopardy.randomizeArray(diffCategory);
     if (sameCategory.length > 8) {
       choices.push(...sameCategory.slice(0, 7));
     } else {
       choices.push(...sameCategory.slice(0, 4), ...diffCategory.slice(0, 3));
     }
-    randomizeArray(choices);
+    jeopardy.randomizeArray(choices);
     return choices;
   },
 

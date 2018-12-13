@@ -8,21 +8,20 @@ class Game {
     this.cluesRemaining = 16;
   }
 
-  startGame(event) {
-    event.preventDefault();
-    jeopardy.instantiatePlayers();
-    jeopardy.instantiateClues();
-    jeopardy.instantiateRounds();
-    jeopardy.checkGameState();
+  startGame(names) {
+    this.instantiatePlayers(names);
+    this.instantiateClues();
+    this.instantiateRounds();
+    this.checkGameState();
     domUpdates.removeStartScreen();
     domUpdates.updatePlayerNamesOnDOM();
     domUpdates.updateCategoriesOnDOM();
   }
   
-  instantiatePlayers() {
-    this.addPlayer(new Player($('#name-0').val(), true));
-    this.addPlayer(new Player($('#name-1').val()));
-    this.addPlayer(new Player($('#name-2').val()));
+  instantiatePlayers(names) {
+    this.addPlayer(new Player(names[0], true));
+    this.addPlayer(new Player(names[1]));
+    this.addPlayer(new Player(names[2]));
     this.activePlayer = this.players[0];
   }
   
@@ -35,7 +34,7 @@ class Game {
   
   instantiateRounds() {
     const categories = Object.keys(data.categories);
-    randomizeArray(categories);
+    this.randomizeArray(categories);
     for (let i = 1; i <= 2; i++) {
       const roundCategories = categories.splice(0, 4);
       this.rounds.push(new Round(roundCategories, i));
@@ -78,6 +77,13 @@ class Game {
       round.randomizeDailyDoubles();
       round.setCategoryNames();
     });
+  }
+
+  randomizeArray(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      const randomIndex = Math.floor((Math.random() * (arr.length - i))) + i;
+      [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+    }
   }
 }
 

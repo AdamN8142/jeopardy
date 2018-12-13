@@ -8,6 +8,8 @@
 ![screenshot of main screen](images/MainScreen.png)
 
 ## Installation Instructions
+`cd` into a directory of your choice
+
 `git clone git@github.com:dForDeveloper/jeopardy.git`
 
 `npm install`
